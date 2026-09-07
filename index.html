@@ -763,6 +763,18 @@
 		const GIST_ID = '0ead8b4bdb3bc51e0fe9668389615997';          // ganti dengan ID gist Anda
 		const GITHUB_TOKEN = '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';   // ganti dengan token Anda
 		const GIST_FILENAME = 'srt39-scores.json';
+
+		// Frontend - removed token
+		async function loadScoresFromGist() {
+   			 const response = await fetch('/api/gist-data');
+  			 return response.json();
+		}
+		
+		// Backend (Node.js example)
+		app.get('/api/gist-data', async (req, res) => {
+		    const token = process.env.GITHUB_TOKEN; // Secure!
+		    // Use the token here
+		});
 		
         // ============================================================
         // DATA SISWA
