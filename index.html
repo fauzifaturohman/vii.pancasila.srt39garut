@@ -757,25 +757,13 @@
     </div>
 
     <script>
-		// ============================================================
-		// KONFIGURASI GITHUB GIST
-		// ============================================================
-		const GIST_ID = '0ead8b4bdb3bc51e0fe9668389615997';          // ganti dengan ID gist Anda
-		const GITHUB_TOKEN = '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';   // ganti dengan token Anda
-		const GIST_FILENAME = 'srt39-scores.json';
+        // ============================================================
+        // KONFIGURASI GITHUB GIST
+        // ============================================================
+        const GIST_ID = '0ead8b4bdb3bc51e0fe9668389615997';
+        const GITHUB_TOKEN = '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';
+        const GIST_FILENAME = 'srt39-scores.json';
 
-		// Frontend - removed token
-		async function loadScoresFromGist() {
-   			 const response = await fetch('/api/gist-data');
-  			 return response.json();
-		}
-		
-		// Backend (Node.js example)
-		app.get('/api/gist-data', async (req, res) => {
-		    const token = process.env.GITHUB_TOKEN; // Secure!
-		    // Use the token here
-		});
-		
         // ============================================================
         // DATA SISWA
         // ============================================================
@@ -803,31 +791,31 @@
             "Sifa Nuraini",
             "Syifa Nurhayati",
             "Yan Yan Abdul Hadi",
-            "Arman Maulana",																																									
-            "De Pahri Putra Ramadan",																																									
-            "Deri Muhammad",																																									
-            "Dewangga Nugraha",																																									
-            "Elsa Sabila Nurhalimah",																																									
-            "Ihsan Maulana",																																									
-		    "Irna Raodotul Zanah",																																									
-		    "Lesti Julianti",																																									
-		    "Muhamad Hasanudin",																																									
-		    "Muhammad Zaki Aripin",																																									
-		    "Musnan Firdaus",																																									
-		    "Novi Rahmadani",																																									
-		    "Parhan Heriyansah",																																									
-		    "Pirmansyah Ramdani",																																									
-		    "Raihan Saputra",																																									
-		    "Rani",																																									
-		    "Reza Hanafiah",																																									
-		    "Rina",																																									
-		    "Sabit Maulana",																																									
-		    "Salsa Bila",																																									
-		    "Selli Khairunnisa",																																									
-		    "Siti Masitoh",																																									
-		    "Siti Paswa",																																									
-		    "Sri Mulyani",																																									
-		    "Sudirman",																																									
+            "Arman Maulana",
+            "De Pahri Putra Ramadan",
+            "Deri Muhammad",
+            "Dewangga Nugraha",
+            "Elsa Sabila Nurhalimah",
+            "Ihsan Maulana",
+            "Irna Raodotul Zanah",
+            "Lesti Julianti",
+            "Muhamad Hasanudin",
+            "Muhammad Zaki Aripin",
+            "Musnan Firdaus",
+            "Novi Rahmadani",
+            "Parhan Heriyansah",
+            "Pirmansyah Ramdani",
+            "Raihan Saputra",
+            "Rani",
+            "Reza Hanafiah",
+            "Rina",
+            "Sabit Maulana",
+            "Salsa Bila",
+            "Selli Khairunnisa",
+            "Siti Masitoh",
+            "Siti Paswa",
+            "Sri Mulyani",
+            "Sudirman",
             "Yusup Awaludin",
             "Zaki M. Kusumah"
         ];
@@ -1014,67 +1002,66 @@
             return arr;
         }
 
-    async function loadScores() {
-  		  try {
-   		     const res = await fetch(`https://api.github.com/gists/${GIST_ID}`, {
-       		     headers: {
-        	        'Authorization': `token ${GITHUB_TOKEN}`,
-        	        'Accept': 'application/vnd.github.v3+json'
-      		    }
-       		 });
-       		 if (!res.ok) throw new Error('Gagal mengambil data');
-      	 	 const gist = await res.json();
-      		 const content = gist.files[GIST_FILENAME]?.content || '{}';
-       		 allScores = JSON.parse(content);
-   		 } catch (err) {
-       		 console.warn('Gagal load dari GitHub, pakai localStorage fallback:', err);
-      		 // Fallback ke localStorage
-        	 try {
-            	const raw = localStorage.getItem('srt39_scores');
-           		if (raw) allScores = JSON.parse(raw);
-     	    } catch (_) { allScores = {}; }
-   		}
-	}
-
-	async function saveScores() {
-	    // Simpan ke localStorage dulu (fallback)
-	    localStorage.setItem('srt39_scores', JSON.stringify(allScores));
-
-    // Kirim ke GitHub Gist
-    try {
-        const payload = {
-            files: {
-                [GIST_FILENAME]: {
-                    content: JSON.stringify(allScores, null, 2)
-                }
+        async function loadScores() {
+            try {
+                const res = await fetch(`https://api.github.com/gists/${GIST_ID}`, {
+                    headers: {
+                        'Authorization': `token ${GITHUB_TOKEN}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+                if (!res.ok) throw new Error('Gagal mengambil data');
+                const gist = await res.json();
+                const content = gist.files[GIST_FILENAME]?.content || '{}';
+                allScores = JSON.parse(content);
+            } catch (err) {
+                console.warn('Gagal load dari GitHub, pakai localStorage fallback:', err);
+                try {
+                    const raw = localStorage.getItem('srt39_scores');
+                    if (raw) allScores = JSON.parse(raw);
+                } catch (_) { allScores = {}; }
             }
-        };
-        const res = await fetch(`https://api.github.com/gists/${GIST_ID}`, {
-            method: 'PATCH',
-            headers: {
-                'Authorization': `token ${GITHUB_TOKEN}`,
-                'Accept': 'application/vnd.github.v3+json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(payload)
-        });
-        if (!res.ok) throw new Error('Gagal menyimpan ke GitHub');
-        console.log('✅ Data berhasil disimpan ke GitHub Gist');
-    } catch (err) {
-        console.warn('Gagal simpan ke GitHub, data tetap di localStorage:', err);
-    }
-}
+        }
 
-        async getStudentScore(student, bab) {
+        async function saveScores() {
+            // Simpan ke localStorage dulu (fallback)
+            localStorage.setItem('srt39_scores', JSON.stringify(allScores));
+
+            // Kirim ke GitHub Gist
+            try {
+                const payload = {
+                    files: {
+                        [GIST_FILENAME]: {
+                            content: JSON.stringify(allScores, null, 2)
+                        }
+                    }
+                };
+                const res = await fetch(`https://api.github.com/gists/${GIST_ID}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Authorization': `token ${GITHUB_TOKEN}`,
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+                if (!res.ok) throw new Error('Gagal menyimpan ke GitHub');
+                console.log('✅ Data berhasil disimpan ke GitHub Gist');
+            } catch (err) {
+                console.warn('Gagal simpan ke GitHub, data tetap di localStorage:', err);
+            }
+        }
+
+        function getStudentScore(student, bab) {
             if (!allScores[student]) return null;
             return allScores[student][bab] !== undefined ? allScores[student][bab] : null;
         }
 
         async function setStudentScore(student, bab, score) {
- 		   if (!allScores[student]) allScores[student] = {};
-	       allScores[student][bab] = score;
-	       await saveScores();
-		}
+            if (!allScores[student]) allScores[student] = {};
+            allScores[student][bab] = score;
+            await saveScores();
+        }
 
         function getBabLabel(bab) {
             const map = { bab1: 'Bab 1', bab2: 'Bab 2', bab3: 'Bab 3', bab4: 'Bab 4', bab5: 'Bab 5' };
@@ -1344,7 +1331,8 @@
             }
         }
 
-        function submitQuiz() {
+        // PERBAIKAN: fungsi submitQuiz dijadikan async
+        async function submitQuiz() {
             const questions = quizState.questions;
             const answers = quizState.answers;
             const total = questions.length;
@@ -1473,12 +1461,15 @@
             loginPage.style.display = 'none';
             dashboard.classList.add('active');
             greetingText.textContent = `Halo, ${found}`;
+            // Simpan session
+            try { sessionStorage.setItem('srt39_user', found); } catch (_) {}
             renderDashboard();
             return true;
         }
 
         function doLogout() {
             currentUser = null;
+            try { sessionStorage.removeItem('srt39_user'); } catch (_) {}
             loginPage.style.display = 'flex';
             dashboard.classList.remove('active');
             usernameInput.value = '';
@@ -1519,58 +1510,24 @@
         // INIT
         // ============================================================
         (async function init() {
-		    await loadScores();
-        // Check if user already logged in (via sessionStorage)
-        try {
-            const saved = sessionStorage.getItem('srt39_user');
-            if (saved && STUDENTS.includes(saved)) {
-                currentUser = saved;
-                loginPage.style.display = 'none';
-                dashboard.classList.add('active');
-                greetingText.textContent = `Halo, ${saved}`;
-                renderDashboard();
-            }
-        } catch (_) {}
+            await loadScores();
 
-        // Save user on login
-        const origLogin = doLogin;
-        doLogin = function(username, password) {
-            const result = origLogin.call(this, username, password);
-            if (result && currentUser) {
-                try { sessionStorage.setItem('srt39_user', currentUser); } catch (_) {}
-            }
-            return result;
-        };
+            // Cek sessionStorage untuk login otomatis
+            try {
+                const saved = sessionStorage.getItem('srt39_user');
+                if (saved && STUDENTS.includes(saved)) {
+                    currentUser = saved;
+                    loginPage.style.display = 'none';
+                    dashboard.classList.add('active');
+                    greetingText.textContent = `Halo, ${saved}`;
+                    renderDashboard();
+                }
+            } catch (_) {}
 
-        // Override logout to clear session
-        const origLogout = doLogout;
-        doLogout = function() {
-            try { sessionStorage.removeItem('srt39_user'); } catch (_) {}
-            origLogout.call(this);
-        };
-
-        // Re-bind login form
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const uname = usernameInput.value.trim();
-            const pwd = passwordInput.value.trim();
-            doLogin(uname, pwd);
-        });
-
-        // Re-bind logout
-        btnLogout.addEventListener('click', doLogout);
-
-        // If already logged in, ensure the login form doesn't show
-        if (currentUser) {
-            loginPage.style.display = 'none';
-            dashboard.classList.add('active');
-            greetingText.textContent = `Halo, ${currentUser}`;
-            renderDashboard();
-        }
-
-        console.log('✅ SRT 39 Garut – Pancasila Kelas VII siap!');
-        console.log(`📚 ${STUDENTS.length} siswa terdaftar.`);
-        console.log('🔑 Login: nama lengkap, password: pancasila');
+            console.log('✅ SRT 39 Garut – Pancasila Kelas VII siap!');
+            console.log(`📚 ${STUDENTS.length} siswa terdaftar.`);
+            console.log('🔑 Login: nama lengkap, password: pancasila');
+        })();
     </script>
 </body>
 </html>
