@@ -758,11 +758,12 @@
 
     <script>
         // ============================================================
-        // KONFIGURASI GITHUB GIST
+        // KONFIGURASI FIREBASE REALTIME DATABASE
         // ============================================================
-        const GIST_ID = '0ead8b4bdb3bc51e0fe9668389615997';
-        const GITHUB_TOKEN = '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';
-        const GIST_FILENAME = 'srt39-scores.json';
+        // Ganti URL di bawah dengan URL database Firebase Anda
+        // Contoh: https://srt39-garut-default-rtdb.asia-southeast1.firebasedatabase.app
+        const FIREBASE_DB_URL = 'https://vii-pancasila-srt39garut-fe87b.firebaseapp.com/';
+        const SCORES_PATH = 'srt39-scores';
 
         // ============================================================
         // DATA SISWA
@@ -1002,65 +1003,100 @@
             return arr;
         }
 
+        // Ubah nama siswa menjadi key yang aman untuk Firebase
+        // (Firebase tidak mengizinkan karakter . # $ / [ ] pada key)
+        function studentKey(name) {
+            return name.trim().replace(/[.#$/\[\]]/g, '_');
+        }
+
+        // ---------- BACA SEMUA NILAI DARI SERVER ----------
         async function loadScores() {
+            // 1. Tampilkan dulu data dari cache lokal supaya aplikasi langsung jalan
             try {
-                const res = await fetch(`https://api.github.com/gists/${GIST_ID}`, {
-                    headers: {
-                        'Authorization': `token ${GITHUB_TOKEN}`,
-                        'Accept': 'application/vnd.github.v3+json'
-                    }
-                });
-                if (!res.ok) throw new Error('Gagal mengambil data');
-                const gist = await res.json();
-                const content = gist.files[GIST_FILENAME]?.content || '{}';
-                allScores = JSON.parse(content);
+                const raw = localStorage.getItem('srt39_scores');
+                if (raw) allScores = JSON.parse(raw);
+            } catch (_) { allScores = {}; }
+
+            // 2. Ambil data terbaru dari server
+            try {
+                const res = await fetch(`${FIREBASE_DB_URL}/${SCORES_PATH}.json`, { cache: 'no-store' });
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const data = await res.json();
+
+                const remote = {};
+                if (data) {
+                    Object.values(data).forEach((entry) => {
+                        if (!entry || !entry.name) return;
+                        const { name, ...babs } = entry;
+                        remote[name] = babs;
+                    });
+                }
+                allScores = remote;
+                localStorage.setItem('srt39_scores', JSON.stringify(allScores));
+                console.log('✅ Data nilai terbaru diambil dari server');
             } catch (err) {
-                console.warn('Gagal load dari GitHub, pakai localStorage fallback:', err);
-                try {
-                    const raw = localStorage.getItem('srt39_scores');
-                    if (raw) allScores = JSON.parse(raw);
-                } catch (_) { allScores = {}; }
+                console.warn('⚠️ Server tidak terjangkau, memakai data lokal:', err);
+            }
+            return allScores;
+        }
+
+        // ---------- SIMPAN NILAI SATU SISWA KE SERVER ----------
+        async function setStudentScore(student, bab, score) {
+            // update tampilan lokal dulu
+            if (!allScores[student]) allScores[student] = {};
+            allScores[student][bab] = score;
+            localStorage.setItem('srt39_scores', JSON.stringify(allScores));
+
+            // kirim ke server
+            try {
+                const key = encodeURIComponent(studentKey(student));
+                const res = await fetch(`${FIREBASE_DB_URL}/${SCORES_PATH}/${key}.json`, {
+                    method: 'PATCH',   // PATCH = hanya menimpa field yang dikirim
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: student, [bab]: score })
+                });
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                console.log('✅ Nilai terkirim ke server');
+            } catch (err) {
+                console.warn('⚠️ Gagal kirim ke server. Disimpan di antrean:', err);
+                queuePending(student, bab, score);
             }
         }
 
-        async function saveScores() {
-            // Simpan ke localStorage dulu (fallback)
-            localStorage.setItem('srt39_scores', JSON.stringify(allScores));
-
-            // Kirim ke GitHub Gist
+        // ---------- ANTREAN (kalau internet mati saat kirim) ----------
+        function queuePending(student, bab, score) {
             try {
-                const payload = {
-                    files: {
-                        [GIST_FILENAME]: {
-                            content: JSON.stringify(allScores, null, 2)
-                        }
-                    }
-                };
-                const res = await fetch(`https://api.github.com/gists/${GIST_ID}`, {
-                    method: 'PATCH',
-                    headers: {
-                        'Authorization': `token ${GITHUB_TOKEN}`,
-                        'Accept': 'application/vnd.github.v3+json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(payload)
-                });
-                if (!res.ok) throw new Error('Gagal menyimpan ke GitHub');
-                console.log('✅ Data berhasil disimpan ke GitHub Gist');
-            } catch (err) {
-                console.warn('Gagal simpan ke GitHub, data tetap di localStorage:', err);
+                const q = JSON.parse(localStorage.getItem('srt39_pending') || '[]');
+                q.push({ student, bab, score });
+                localStorage.setItem('srt39_pending', JSON.stringify(q));
+            } catch (_) {}
+        }
+
+        async function flushPending() {
+            let q = [];
+            try { q = JSON.parse(localStorage.getItem('srt39_pending') || '[]'); } catch (_) {}
+            if (!q.length) return;
+            const remaining = [];
+            for (const item of q) {
+                try {
+                    const key = encodeURIComponent(studentKey(item.student));
+                    const res = await fetch(`${FIREBASE_DB_URL}/${SCORES_PATH}/${key}.json`, {
+                        method: 'PATCH',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ name: item.student, [item.bab]: item.score })
+                    });
+                    if (!res.ok) throw new Error('HTTP ' + res.status);
+                } catch (_) {
+                    remaining.push(item);
+                }
             }
+            localStorage.setItem('srt39_pending', JSON.stringify(remaining));
+            if (q.length !== remaining.length) console.log(`✅ ${q.length - remaining.length} nilai tertunda berhasil dikirim`);
         }
 
         function getStudentScore(student, bab) {
             if (!allScores[student]) return null;
             return allScores[student][bab] !== undefined ? allScores[student][bab] : null;
-        }
-
-        async function setStudentScore(student, bab, score) {
-            if (!allScores[student]) allScores[student] = {};
-            allScores[student][bab] = score;
-            await saveScores();
         }
 
         function getBabLabel(bab) {
@@ -1406,10 +1442,19 @@
             return ranking;
         }
 
-        function showRanking() {
+        // Fungsi ranking diubah menjadi async agar memuat data terbaru dari server
+        async function showRanking() {
+            modalTitle.textContent = '🏆 Peringkat Kelas';
+            modalBody.innerHTML = '<div style="padding:40px;text-align:center;color:#666;">⏳ Memuat data terbaru dari server…</div>';
+            modalOverlay.classList.add('active');
+
+            await loadScores();          // ambil nilai terbaru dari server
             const ranking = buildRanking();
+
             let html = `
-                <div style="margin-bottom:12px;font-weight:500;color:#555;">🏆 Peringkat berdasarkan rata-rata nilai kuis (0–100)</div>
+                <div style="margin-bottom:12px;font-weight:500;color:#555;">
+                    🏆 Peringkat berdasarkan rata-rata nilai kuis (0–100) — data online
+                </div>
                 <div class="ranking-table-wrap">
                     <table class="ranking-table">
                         <thead>
@@ -1419,7 +1464,7 @@
             `;
             ranking.forEach((item, idx) => {
                 const rankClass = idx === 0 ? 'rank-1' : idx === 1 ? 'rank-2' : idx === 2 ? 'rank-3' : '';
-                const medal = idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `#${idx+1}`;
+                const medal = idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `#${idx + 1}`;
                 const babKeys = ['bab1', 'bab2', 'bab3', 'bab4', 'bab5'];
                 html += `
                     <tr class="${rankClass}">
@@ -1434,11 +1479,11 @@
                         </tbody>
                     </table>
                 </div>
-                <div style="margin-top:14px;font-size:0.85rem;color:#888;">* Nilai berdasarkan kuis yang telah dikerjakan. Kosong (-) = belum mengerjakan.</div>
+                <div style="margin-top:14px;font-size:0.85rem;color:#888;">* Kosong (-) = belum mengerjakan.</div>
+                <button class="btn-submit-quiz" style="background:linear-gradient(135deg,#1a3a5c,#2b5f8a);margin-top:16px;" id="btnRefreshRanking">🔄 Muat Ulang Peringkat</button>
             `;
-            modalTitle.textContent = '🏆 Peringkat Kelas';
             modalBody.innerHTML = html;
-            modalOverlay.classList.add('active');
+            document.getElementById('btnRefreshRanking').addEventListener('click', showRanking);
         }
 
         // ============================================================
@@ -1506,10 +1551,14 @@
             if (e.key === 'Enter') loginForm.dispatchEvent(new Event('submit'));
         });
 
+        // Kirim ulang nilai yang tertunda saat internet kembali online
+        window.addEventListener('online', flushPending);
+
         // ============================================================
         // INIT
         // ============================================================
         (async function init() {
+            await flushPending();
             await loadScores();
 
             // Cek sessionStorage untuk login otomatis
