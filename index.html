@@ -5,724 +5,391 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SRT 39 Garut - Pancasila Kelas VII</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f0f2f5;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background: #f0f2f5; min-height: 100vh;
+            display: flex; justify-content: center; align-items: center;
         }
         .app-container {
-            width: 100%;
-            max-width: 1100px;
-            min-height: 100vh;
-            background: #fff;
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.08);
-            border-radius: 0;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
+            width: 100%; max-width: 1100px; min-height: 100vh;
+            background: #fff; box-shadow: 0 0 40px rgba(0,0,0,0.08);
+            border-radius: 0; overflow: hidden;
+            display: flex; flex-direction: column;
         }
         @media (min-width:768px) {
-            .app-container {
-                border-radius: 28px;
-                min-height: 96vh;
-                margin: 16px;
-            }
+            .app-container { border-radius: 28px; min-height: 96vh; margin: 16px; }
         }
 
         /* HEADER */
         .app-header {
             background: linear-gradient(135deg, #1a3a5c 0%, #2b5f8a 100%);
-            padding: 18px 28px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 12px;
-            border-bottom: 4px solid #f9c74f;
-            flex-shrink: 0;
+            padding: 18px 28px; display: flex; align-items: center;
+            justify-content: space-between; flex-wrap: wrap; gap: 12px;
+            border-bottom: 4px solid #f9c74f; flex-shrink: 0;
         }
-        .app-header .brand {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
+        .app-header .brand { display: flex; align-items: center; gap: 14px; }
         .app-header .brand img {
-            height: 48px;
-            width: 48px;
-            object-fit: contain;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.15);
-            padding: 4px;
+            height: 48px; width: 48px; object-fit: contain;
+            border-radius: 12px; background: rgba(255,255,255,0.15); padding: 4px;
         }
         .app-header .brand h1 {
-            color: #fff;
-            font-size: 1.2rem;
-            font-weight: 700;
-            line-height: 1.2;
-            letter-spacing: 0.3px;
+            color: #fff; font-size: 1.2rem; font-weight: 700;
+            line-height: 1.2; letter-spacing: 0.3px;
         }
         .app-header .brand h1 small {
-            display: block;
-            font-size: 0.65rem;
-            font-weight: 400;
-            opacity: 0.8;
+            display: block; font-size: 0.65rem; font-weight: 400; opacity: 0.8;
         }
         .app-header .user-info {
-            color: #fff;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 16px;
+            color: #fff; font-size: 0.9rem;
+            display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
         }
         .app-header .user-info .greeting {
-            background: rgba(255, 255, 255, 0.12);
-            padding: 6px 16px;
-            border-radius: 30px;
-            font-weight: 500;
+            background: rgba(255,255,255,0.12); padding: 6px 16px;
+            border-radius: 30px; font-weight: 500;
         }
         .badge-secure {
-            background: rgba(39, 174, 96, 0.25);
-            border: 1px solid rgba(39, 174, 96, 0.6);
-            color: #b8f5cd;
-            padding: 5px 14px;
-            border-radius: 30px;
-            font-size: 0.72rem;
-            font-weight: 700;
-            letter-spacing: 0.4px;
+            background: rgba(39,174,96,0.25);
+            border: 1px solid rgba(39,174,96,0.6);
+            color: #b8f5cd; padding: 5px 14px; border-radius: 30px;
+            font-size: 0.72rem; font-weight: 700; letter-spacing: 0.4px;
         }
         .btn-logout {
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            color: #fff;
-            padding: 6px 18px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.8rem;
-            transition: 0.2s;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.25);
+            color: #fff; padding: 6px 18px; border-radius: 30px;
+            cursor: pointer; font-weight: 600; font-size: 0.8rem; transition: 0.2s;
         }
-        .btn-logout:hover {
-            background: #e74c3c;
-            border-color: #e74c3c;
-        }
+        .btn-logout:hover { background: #e74c3c; border-color: #e74c3c; }
 
         /* MAIN */
         .app-main {
-            flex: 1;
-            padding: 24px 28px 32px;
-            overflow-y: auto;
-            background: #fafbfc;
+            flex: 1; padding: 24px 28px 32px; overflow-y: auto; background: #fafbfc;
         }
 
         /* LOGIN */
         .login-page {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 70vh;
-            text-align: center;
-            padding: 20px;
+            display: flex; flex-direction: column; align-items: center;
+            justify-content: center; min-height: 70vh; text-align: center; padding: 20px;
         }
         .login-page .logo-big {
-            width: 100px;
-            height: 100px;
-            margin-bottom: 16px;
-            background: #1a3a5c;
-            border-radius: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 3rem;
-            font-weight: 800;
+            width: 100px; height: 100px; margin-bottom: 16px;
+            background: #1a3a5c; border-radius: 30px;
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-size: 3rem; font-weight: 800;
         }
-        .login-page h2 {
-            font-size: 1.8rem;
-            color: #1a3a5c;
-            margin-bottom: 8px;
-        }
-        .login-page p {
-            color: #555;
-            margin-bottom: 28px;
-            max-width: 400px;
-        }
+        .login-page h2 { font-size: 1.8rem; color: #1a3a5c; margin-bottom: 8px; }
+        .login-page p { color: #555; margin-bottom: 28px; max-width: 400px; }
         .login-form {
-            width: 100%;
-            max-width: 380px;
-            background: #fff;
-            padding: 32px 28px;
-            border-radius: 24px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
-            border: 1px solid #e9edf2;
+            width: 100%; max-width: 380px; background: #fff;
+            padding: 32px 28px; border-radius: 24px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06); border: 1px solid #e9edf2;
         }
         .login-form label {
-            display: block;
-            text-align: left;
-            font-weight: 600;
-            font-size: 0.85rem;
-            color: #333;
-            margin: 12px 0 4px;
+            display: block; text-align: left; font-weight: 600;
+            font-size: 0.85rem; color: #333; margin: 12px 0 4px;
         }
         .login-form input {
-            width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #e2e6ed;
-            border-radius: 14px;
-            font-size: 1rem;
-            transition: 0.2s;
-            background: #f8f9fb;
+            width: 100%; padding: 12px 16px; border: 2px solid #e2e6ed;
+            border-radius: 14px; font-size: 1rem; transition: 0.2s; background: #f8f9fb;
         }
         .login-form input:focus {
-            outline: none;
-            border-color: #2b5f8a;
-            background: #fff;
-            box-shadow: 0 0 0 4px rgba(43, 95, 138, 0.1);
+            outline: none; border-color: #2b5f8a; background: #fff;
+            box-shadow: 0 0 0 4px rgba(43,95,138,0.1);
         }
         .login-form .btn-login {
-            width: 100%;
-            margin-top: 20px;
-            padding: 14px;
+            width: 100%; margin-top: 20px; padding: 14px;
             background: linear-gradient(135deg, #1a3a5c, #2b5f8a);
-            color: #fff;
-            border: none;
-            border-radius: 14px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.25s;
+            color: #fff; border: none; border-radius: 14px;
+            font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: 0.25s;
         }
         .login-form .btn-login:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(26, 58, 92, 0.3);
+            box-shadow: 0 8px 20px rgba(26,58,92,0.3);
         }
-        .login-error {
-            color: #e74c3c;
-            font-size: 0.85rem;
-            margin-top: 12px;
-        }
+        .login-error { color: #e74c3c; font-size: 0.85rem; margin-top: 12px; }
 
         /* DASHBOARD */
-        .dashboard {
-            display: none;
-        }
-        .dashboard.active {
-            display: block;
-        }
+        .dashboard { display: none; }
+        .dashboard.active { display: block; }
 
         .welcome-banner {
             background: linear-gradient(135deg, #eef4fa, #dce6f0);
-            padding: 20px 24px;
-            border-radius: 20px;
-            margin-bottom: 28px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
+            padding: 20px 24px; border-radius: 20px; margin-bottom: 28px;
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 12px;
         }
-        .welcome-banner h2 {
-            color: #1a3a5c;
-            font-size: 1.3rem;
-        }
-        .welcome-banner h2 span {
-            color: #c0392b;
-        }
+        .welcome-banner h2 { color: #1a3a5c; font-size: 1.3rem; }
+        .welcome-banner h2 span { color: #c0392b; }
         .welcome-banner .badge-score {
-            background: #1a3a5c;
-            color: #fff;
-            padding: 8px 24px;
-            border-radius: 40px;
-            font-weight: 700;
-            font-size: 0.95rem;
+            background: #1a3a5c; color: #fff; padding: 8px 24px;
+            border-radius: 40px; font-weight: 700; font-size: 0.95rem;
         }
+        .info-redo {
+            background: linear-gradient(135deg, #fff4e5, #ffe6c7);
+            border-left: 5px solid #f5a623;
+            color: #7a4b00; padding: 12px 18px; border-radius: 14px;
+            margin-bottom: 20px; font-size: 0.88rem; line-height: 1.6;
+        }
+        .info-redo strong { color: #1a3a5c; }
 
         /* BAB CARDS */
         .bab-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 24px;
-            margin: 20px 0 32px;
+            display: grid; grid-template-columns: 1fr; gap: 24px; margin: 20px 0 32px;
         }
-        @media (min-width: 700px) {
-            .bab-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        @media (min-width: 1000px) {
-            .bab-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
+        @media (min-width: 700px) { .bab-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1000px) { .bab-grid { grid-template-columns: repeat(3, 1fr); } }
 
         .bab-card {
-            background: #fff;
-            border-radius: 20px;
-            padding: 20px 22px 22px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-            border: 1px solid #eef1f6;
-            transition: 0.2s;
-            display: flex;
-            flex-direction: column;
+            background: #fff; border-radius: 20px; padding: 20px 22px 22px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+            border: 1px solid #eef1f6; transition: 0.2s;
+            display: flex; flex-direction: column;
         }
-        .bab-card:hover {
-            border-color: #c5d5e6;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-        }
+        .bab-card:hover { border-color: #c5d5e6; box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
         .bab-card .bab-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
+            display: flex; justify-content: space-between;
+            align-items: center; margin-bottom: 8px;
         }
         .bab-card .bab-number {
-            background: #1a3a5c;
-            color: #fff;
-            font-weight: 700;
-            font-size: 0.75rem;
-            padding: 2px 14px;
-            border-radius: 30px;
+            background: #1a3a5c; color: #fff; font-weight: 700;
+            font-size: 0.75rem; padding: 2px 14px; border-radius: 30px;
         }
         .bab-card .bab-status {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: #27ae60;
+            font-size: 0.75rem; font-weight: 600; color: #27ae60;
         }
-        .bab-card .bab-status.done {
-            color: #27ae60;
-        }
-        .bab-card .bab-status.not-done {
-            color: #95a5a6;
-        }
-        .bab-card h3 {
-            font-size: 1.1rem;
-            color: #1a3a5c;
-            margin: 4px 0 6px;
-        }
+        .bab-card .bab-status.not-done { color: #95a5a6; }
+        .bab-card h3 { font-size: 1.1rem; color: #1a3a5c; margin: 4px 0 6px; }
         .bab-card .bab-summary {
-            font-size: 0.88rem;
-            color: #444;
-            line-height: 1.6;
-            flex: 1;
-            margin: 6px 0 14px;
-            max-height: 80px;
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-line-clamp: 4;
-            -webkit-box-orient: vertical;
+            font-size: 0.88rem; color: #444; line-height: 1.6; flex: 1;
+            margin: 6px 0 14px; max-height: 80px; overflow: hidden;
+            display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;
+        }
+        .score-box {
+            display: flex; justify-content: space-between; align-items: center;
+            background: #eef4fa; border-radius: 12px;
+            padding: 8px 14px; margin-bottom: 10px;
+        }
+        .score-box .score-label-mini {
+            font-size: 0.75rem; color: #555; font-weight: 600;
+        }
+        .score-box .score-value {
+            font-weight: 800; color: #1a3a5c; font-size: 1.05rem;
+        }
+        .score-box .attempts-badge {
+            background: #1a3a5c; color: #fff; font-size: 0.68rem;
+            padding: 2px 10px; border-radius: 20px; font-weight: 700;
         }
         .bab-card .bab-actions {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: auto;
+            display: flex; gap: 10px; flex-wrap: wrap; margin-top: auto;
         }
         .bab-card .bab-actions button {
-            padding: 8px 18px;
-            border: none;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: 0.2s;
-            flex: 1;
-            min-width: 80px;
+            padding: 8px 18px; border: none; border-radius: 30px;
+            font-weight: 600; font-size: 0.8rem; cursor: pointer;
+            transition: 0.2s; flex: 1; min-width: 80px;
         }
-        .btn-materi {
-            background: #eef4fa;
-            color: #1a3a5c;
-        }
-        .btn-materi:hover {
-            background: #dce6f0;
-        }
-        .btn-kuis {
-            background: #1a3a5c;
-            color: #fff;
-        }
+        .btn-materi { background: #eef4fa; color: #1a3a5c; }
+        .btn-materi:hover { background: #dce6f0; }
+        .btn-kuis { background: #1a3a5c; color: #fff; }
         .btn-kuis:hover {
-            background: #2b5f8a;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(26, 58, 92, 0.25);
+            background: #2b5f8a; transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(26,58,92,0.25);
         }
         .btn-kuis:disabled {
-            opacity: 0.55;
-            cursor: not-allowed;
-            transform: none !important;
-            box-shadow: none !important;
+            opacity: 0.55; cursor: not-allowed;
+            transform: none !important; box-shadow: none !important;
             background: #27ae60;
+        }
+        .btn-redo {
+            background: linear-gradient(135deg, #f9c74f, #f5a623) !important;
+            color: #1a3a5c !important;
+            font-weight: 700 !important;
+        }
+        .btn-redo:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 14px rgba(245,166,35,0.4) !important;
         }
 
         /* RANKING BUTTON */
-        .ranking-section {
-            text-align: center;
-            margin: 10px 0 10px;
-        }
+        .ranking-section { text-align: center; margin: 10px 0 10px; }
         .btn-ranking {
             background: linear-gradient(135deg, #f9c74f, #f5a623);
-            color: #1a3a5c;
-            border: none;
-            padding: 14px 44px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.05rem;
-            cursor: pointer;
-            transition: 0.25s;
-            box-shadow: 0 4px 14px rgba(245, 166, 35, 0.3);
+            color: #1a3a5c; border: none; padding: 14px 44px;
+            border-radius: 50px; font-weight: 700; font-size: 1.05rem;
+            cursor: pointer; transition: 0.25s;
+            box-shadow: 0 4px 14px rgba(245,166,35,0.3);
         }
         .btn-ranking:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(245, 166, 35, 0.4);
+            box-shadow: 0 8px 24px rgba(245,166,35,0.4);
         }
 
         /* MODAL */
         .modal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.45);
-            backdrop-filter: blur(4px);
-            z-index: 999;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.45); backdrop-filter: blur(4px);
+            z-index: 999; justify-content: center; align-items: center; padding: 20px;
         }
-        .modal-overlay.active {
-            display: flex;
-        }
+        .modal-overlay.active { display: flex; }
         .modal-box {
-            background: #fff;
-            max-width: 780px;
-            width: 100%;
-            max-height: 90vh;
-            border-radius: 28px;
-            padding: 28px 30px 34px;
-            overflow-y: auto;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
-            position: relative;
-            animation: modalIn 0.25s ease;
+            background: #fff; max-width: 780px; width: 100%;
+            max-height: 90vh; border-radius: 28px;
+            padding: 28px 30px 34px; overflow-y: auto;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+            position: relative; animation: modalIn 0.25s ease;
         }
         @keyframes modalIn {
-            from {
-                opacity: 0;
-                transform: scale(0.96) translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
+            from { opacity: 0; transform: scale(0.96) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
         .modal-box .close-modal {
-            position: sticky;
-            top: 0;
-            float: right;
-            background: #f1f3f6;
-            border: none;
-            font-size: 1.5rem;
-            width: 40px;
-            height: 40px;
-            border-radius: 40px;
-            cursor: pointer;
-            font-weight: 300;
-            color: #333;
-            transition: 0.15s;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: sticky; top: 0; float: right;
+            background: #f1f3f6; border: none; font-size: 1.5rem;
+            width: 40px; height: 40px; border-radius: 40px; cursor: pointer;
+            font-weight: 300; color: #333; transition: 0.15s;
+            z-index: 2; display: flex; align-items: center; justify-content: center;
         }
-        .modal-box .close-modal:hover {
-            background: #e74c3c;
-            color: #fff;
-        }
+        .modal-box .close-modal:hover { background: #e74c3c; color: #fff; }
         .modal-box h2 {
-            color: #1a3a5c;
-            font-size: 1.5rem;
-            margin: 6px 0 16px;
-            padding-right: 40px;
+            color: #1a3a5c; font-size: 1.5rem;
+            margin: 6px 0 16px; padding-right: 40px;
         }
-        .modal-box .modal-body {
-            margin-top: 8px;
-        }
+        .modal-box .modal-body { margin-top: 8px; }
 
         /* MATERI */
-        .materi-content {
-            font-size: 0.95rem;
-            line-height: 1.8;
-            color: #222;
-        }
-        .materi-content h4 {
-            color: #1a3a5c;
-            margin: 18px 0 6px;
-            font-size: 1.1rem;
-        }
-        .materi-content ul {
-            padding-left: 22px;
-            margin: 6px 0 12px;
-        }
-        .materi-content ul li {
-            margin: 4px 0;
-        }
+        .materi-content { font-size: 0.95rem; line-height: 1.8; color: #222; }
+        .materi-content h4 { color: #1a3a5c; margin: 18px 0 6px; font-size: 1.1rem; }
+        .materi-content ul { padding-left: 22px; margin: 6px 0 12px; }
+        .materi-content ul li { margin: 4px 0; }
         .materi-content .highlight {
-            background: #fef9e7;
-            padding: 12px 16px;
-            border-radius: 12px;
-            border-left: 4px solid #f9c74f;
-            margin: 12px 0;
+            background: #fef9e7; padding: 12px 16px; border-radius: 12px;
+            border-left: 4px solid #f9c74f; margin: 12px 0;
         }
 
         /* KUIS */
         .quiz-question {
-            background: #f8f9fb;
-            padding: 18px 20px;
-            border-radius: 16px;
-            margin-bottom: 14px;
-            border: 1px solid #edf0f5;
+            background: #f8f9fb; padding: 18px 20px; border-radius: 16px;
+            margin-bottom: 14px; border: 1px solid #edf0f5;
         }
         .quiz-question .q-text {
-            font-weight: 600;
-            font-size: 0.98rem;
-            color: #1a3a5c;
-            margin-bottom: 8px;
+            font-weight: 600; font-size: 0.98rem; color: #1a3a5c; margin-bottom: 8px;
         }
         .quiz-question .q-options {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            padding-left: 4px;
+            display: flex; flex-direction: column; gap: 5px; padding-left: 4px;
         }
         .quiz-question .q-options label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.92rem;
-            padding: 5px 10px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: 0.1s;
+            display: flex; align-items: center; gap: 10px;
+            font-size: 0.92rem; padding: 5px 10px;
+            border-radius: 10px; cursor: pointer; transition: 0.1s;
         }
-        .quiz-question .q-options label:hover {
-            background: #eef4fa;
-        }
+        .quiz-question .q-options label:hover { background: #eef4fa; }
         .quiz-question .q-options input[type="radio"] {
-            width: 18px;
-            height: 18px;
-            accent-color: #1a3a5c;
-            flex-shrink: 0;
+            width: 18px; height: 18px; accent-color: #1a3a5c; flex-shrink: 0;
         }
         .quiz-progress {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 12px 0 18px;
-            font-weight: 600;
-            color: #1a3a5c;
-            gap: 10px;
-            flex-wrap: wrap;
+            display: flex; justify-content: space-between; align-items: center;
+            margin: 12px 0 18px; font-weight: 600; color: #1a3a5c;
+            gap: 10px; flex-wrap: wrap;
         }
         .quiz-timer {
-            background: #eef4fa;
-            padding: 4px 14px;
-            border-radius: 30px;
-            font-variant-numeric: tabular-nums;
-            font-size: 0.9rem;
+            background: #eef4fa; padding: 4px 14px; border-radius: 30px;
+            font-variant-numeric: tabular-nums; font-size: 0.9rem;
         }
         .quiz-alert-lock {
-            background: #fdecea;
-            border: 1px solid #f5b7b1;
-            color: #c0392b;
-            padding: 10px 14px;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-            display: none;
+            background: #fdecea; border: 1px solid #f5b7b1;
+            color: #c0392b; padding: 10px 14px; border-radius: 12px;
+            font-size: 0.85rem; font-weight: 600; margin-bottom: 12px; display: none;
         }
         .quiz-guard-banner {
-            background: #fff4e5;
-            border-left: 5px solid #f5a623;
-            color: #7a4b00;
-            padding: 10px 14px;
-            border-radius: 10px;
-            font-size: 0.82rem;
-            margin-bottom: 14px;
-            line-height: 1.5;
+            background: #fff4e5; border-left: 5px solid #f5a623;
+            color: #7a4b00; padding: 10px 14px; border-radius: 10px;
+            font-size: 0.82rem; margin-bottom: 14px; line-height: 1.5;
         }
         .btn-submit-quiz {
-            width: 100%;
-            padding: 14px;
+            width: 100%; padding: 14px;
             background: linear-gradient(135deg, #27ae60, #1e8449);
-            color: #fff;
-            border: none;
-            border-radius: 16px;
-            font-weight: 700;
-            font-size: 1.05rem;
-            cursor: pointer;
-            transition: 0.2s;
-            margin-top: 10px;
+            color: #fff; border: none; border-radius: 16px;
+            font-weight: 700; font-size: 1.05rem; cursor: pointer;
+            transition: 0.2s; margin-top: 10px;
         }
         .btn-submit-quiz:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(39, 174, 96, 0.35);
+            box-shadow: 0 6px 20px rgba(39,174,96,0.35);
         }
         .btn-submit-quiz:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none !important;
-            box-shadow: none !important;
+            opacity: 0.5; cursor: not-allowed;
+            transform: none !important; box-shadow: none !important;
         }
 
         /* HASIL KUIS */
-        .quiz-result {
-            text-align: center;
-            padding: 12px 0;
-        }
+        .quiz-result { text-align: center; padding: 12px 0; }
         .quiz-result .score-big {
-            font-size: 4rem;
-            font-weight: 800;
-            color: #1a3a5c;
+            font-size: 4rem; font-weight: 800; color: #1a3a5c;
         }
-        .quiz-result .score-big span {
-            font-size: 1.8rem;
-            color: #666;
-        }
+        .quiz-result .score-big span { font-size: 1.8rem; color: #666; }
         .quiz-result .score-label {
-            font-size: 1.1rem;
-            color: #555;
-            margin-bottom: 6px;
+            font-size: 1.1rem; color: #555; margin-bottom: 6px;
         }
         .quiz-result .result-detail {
-            margin: 16px 0 10px;
-            text-align: left;
-            max-height: 300px;
-            overflow-y: auto;
-            background: #f8f9fb;
-            border-radius: 16px;
+            margin: 16px 0 10px; text-align: left; max-height: 300px;
+            overflow-y: auto; background: #f8f9fb; border-radius: 16px;
             padding: 12px 16px;
         }
         .quiz-result .result-detail .r-item {
-            padding: 6px 0;
-            border-bottom: 1px solid #eef1f6;
-            font-size: 0.88rem;
+            padding: 6px 0; border-bottom: 1px solid #eef1f6; font-size: 0.88rem;
         }
         .quiz-result .result-detail .r-item .r-correct {
-            color: #27ae60;
-            font-weight: 600;
+            color: #27ae60; font-weight: 600;
         }
         .quiz-result .result-detail .r-item .r-wrong {
-            color: #e74c3c;
-            font-weight: 600;
+            color: #e74c3c; font-weight: 600;
         }
         .email-status {
-            font-size: 0.82rem;
-            margin-top: 10px;
-            padding: 8px 12px;
-            border-radius: 10px;
-            display: inline-block;
+            font-size: 0.82rem; margin-top: 10px; padding: 8px 12px;
+            border-radius: 10px; display: inline-block;
         }
-        .email-status.ok {
-            background: #eafaf1;
-            color: #1e8449;
-        }
-        .email-status.fail {
-            background: #fdecea;
-            color: #c0392b;
-        }
+        .email-status.ok { background: #eafaf1; color: #1e8449; }
+        .email-status.fail { background: #fdecea; color: #c0392b; }
 
         /* RANKING */
-        .ranking-table-wrap {
-            overflow-x: auto;
-        }
-        .ranking-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.9rem;
-        }
+        .ranking-table-wrap { overflow-x: auto; }
+        .ranking-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
         .ranking-table th {
-            background: #1a3a5c;
-            color: #fff;
-            padding: 12px 16px;
-            text-align: left;
-            font-weight: 600;
+            background: #1a3a5c; color: #fff; padding: 12px 16px;
+            text-align: left; font-weight: 600;
         }
-        .ranking-table td {
-            padding: 12px 16px;
-            border-bottom: 1px solid #eef1f6;
-        }
-        .ranking-table tr:nth-child(even) {
-            background: #f8f9fb;
-        }
-        .ranking-table .rank-1 {
-            background: #fef9e7 !important;
-        }
-        .ranking-table .rank-2 {
-            background: #f5f6fa !important;
-        }
-        .ranking-table .rank-3 {
-            background: #fdf2e9 !important;
-        }
-        .rank-medal {
-            font-weight: 700;
-        }
-        .rank-medal.gold {
-            color: #f9c74f;
-        }
-        .rank-medal.silver {
-            color: #bdc3c7;
-        }
-        .rank-medal.bronze {
-            color: #e67e22;
-        }
+        .ranking-table td { padding: 12px 16px; border-bottom: 1px solid #eef1f6; }
+        .ranking-table tr:nth-child(even) { background: #f8f9fb; }
+        .ranking-table .rank-1 { background: #fef9e7 !important; }
+        .ranking-table .rank-2 { background: #f5f6fa !important; }
+        .ranking-table .rank-3 { background: #fdf2e9 !important; }
+        .rank-medal { font-weight: 700; }
+        .rank-medal.gold { color: #f9c74f; }
+        .rank-medal.silver { color: #bdc3c7; }
+        .rank-medal.bronze { color: #e67e22; }
 
         /* SCROLLBAR */
-        .modal-box::-webkit-scrollbar {
-            width: 6px;
-        }
-        .modal-box::-webkit-scrollbar-track {
-            background: #eef1f6;
-            border-radius: 10px;
-        }
-        .modal-box::-webkit-scrollbar-thumb {
-            background: #c5d5e6;
-            border-radius: 10px;
-        }
+        .modal-box::-webkit-scrollbar { width: 6px; }
+        .modal-box::-webkit-scrollbar-track { background: #eef1f6; border-radius: 10px; }
+        .modal-box::-webkit-scrollbar-thumb { background: #c5d5e6; border-radius: 10px; }
 
-        /* ==========================================================
-           ANTI-CHEAT WARNING OVERLAY
-           ========================================================== */
+        /* ANTI-CHEAT WARNING OVERLAY */
         .cheat-warning {
-            position: fixed;
-            inset: 0;
-            z-index: 100000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 18px;
-            background: rgba(170, 0, 0, 0.94);
+            position: fixed; inset: 0; z-index: 100000;
+            display: flex; align-items: center; justify-content: center;
+            padding: 18px; background: rgba(170,0,0,0.94);
             animation: flashBg 0.45s infinite alternate;
         }
         @keyframes flashBg {
-            from { background: rgba(170, 0, 0, 0.94); }
-            to   { background: rgba(235, 35, 35, 0.97); }
+            from { background: rgba(170,0,0,0.94); }
+            to   { background: rgba(235,35,35,0.97); }
         }
         .cheat-warning.hidden { display: none; }
         .cheat-warning-box {
-            background: #fff;
-            max-width: 520px;
-            width: 100%;
-            border-radius: 26px;
-            padding: 30px 26px 26px;
-            text-align: center;
-            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
-            border: 5px solid #ffd400;
-            animation: shakeBox 0.5s;
+            background: #fff; max-width: 520px; width: 100%;
+            border-radius: 26px; padding: 30px 26px 26px; text-align: center;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.5);
+            border: 5px solid #ffd400; animation: shakeBox 0.5s;
         }
         @keyframes shakeBox {
             0%, 100% { transform: translateX(0); }
@@ -732,8 +399,7 @@
             80% { transform: translateX(8px); }
         }
         .cheat-warning-box .cheat-icon {
-            font-size: 4rem;
-            line-height: 1;
+            font-size: 4rem; line-height: 1;
             animation: pulseIcon 0.6s infinite alternate;
         }
         @keyframes pulseIcon {
@@ -741,66 +407,39 @@
             to { transform: scale(1.15); }
         }
         .cheat-warning-box h2 {
-            color: #c0392b;
-            font-size: 1.9rem;
-            margin: 8px 0 10px;
-            letter-spacing: 1px;
+            color: #c0392b; font-size: 1.9rem; margin: 8px 0 10px; letter-spacing: 1px;
         }
         .cheat-warning-box p {
-            color: #333;
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 10px;
+            color: #333; font-size: 1rem; line-height: 1.6; margin-bottom: 10px;
         }
         .cheat-warning-box .cheat-count {
-            background: #fdecea;
-            border-radius: 14px;
-            padding: 10px;
-            font-weight: 800;
-            color: #c0392b;
-            font-size: 1.05rem;
-            margin: 14px 0;
+            background: #fdecea; border-radius: 14px; padding: 10px;
+            font-weight: 800; color: #c0392b; font-size: 1.05rem; margin: 14px 0;
         }
-        .cheat-warning-box .cheat-count span {
-            font-size: 1.5rem;
-        }
+        .cheat-warning-box .cheat-count span { font-size: 1.5rem; }
         .cheat-warning-box button {
             background: linear-gradient(135deg, #c0392b, #e74c3c);
-            color: #fff;
-            border: none;
-            padding: 14px 40px;
-            border-radius: 40px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            margin-top: 8px;
-            transition: 0.2s;
+            color: #fff; border: none; padding: 14px 40px;
+            border-radius: 40px; font-weight: 700; font-size: 1rem;
+            cursor: pointer; margin-top: 8px; transition: 0.2s;
         }
         .cheat-warning-box button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(192, 57, 43, 0.4);
+            box-shadow: 0 8px 20px rgba(192,57,43,0.4);
         }
 
-        /* MODE KUIS: cegah seleksi teks & klik kanan */
         body.quiz-mode {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
+            -webkit-user-select: none; -moz-user-select: none;
+            -ms-user-select: none; user-select: none;
         }
 
         /* UTILITY */
-        .hidden {
-            display: none !important;
-        }
-        .text-center {
-            text-align: center;
-        }
+        .hidden { display: none !important; }
+        .text-center { text-align: center; }
         .mt-8 { margin-top: 8px; }
         .mt-16 { margin-top: 16px; }
         .gap-8 { gap: 8px; }
 
-        /* RESPONSIVE */
         @media (max-width: 500px) {
             .app-header { padding: 14px 16px; }
             .app-header .brand h1 { font-size: 0.95rem; }
@@ -859,6 +498,12 @@
                     <div class="badge-score" id="dashAvgScore">⭐ Rata-rata: 0</div>
                 </div>
 
+                <!-- Info Kerjakan Ulang -->
+                <div class="info-redo" id="infoRedo">
+                    💡 <strong>Info:</strong> Anda dapat <strong>mengerjakan ulang</strong> kuis di bab mana pun untuk
+                    memperbaiki nilai. Sistem hanya menyimpan <strong>nilai tertinggi</strong>, jadi nilai Anda tidak akan turun.
+                </div>
+
                 <!-- BAB GRID -->
                 <div class="bab-grid" id="babGrid"></div>
 
@@ -901,8 +546,7 @@
         // ============================================================
         // KONFIGURASI
         // ============================================================
-        // ⚠️ PENTING: Ganti dengan alamat EMAIL LENGKAP guru.
-        // Contoh: 'fauzi@fauzifaturohman.com' atau 'fauzifaturohman@gmail.com'
+        // ⚠️ Ganti dengan alamat EMAIL LENGKAP guru.
         // FormSubmit akan mengirim email aktivasi ke alamat ini pada
         // pengiriman PERTAMA. Klik tautan aktivasi di email tersebut.
         const EMAIL_GURU = 'fauzifaturohman.com';
@@ -913,11 +557,17 @@
         const SCORES_PATH = 'srt39-scores';
 
         // Anti-cheat
-        const MAX_PELANGGARAN = 5;          // batas pelanggaran sebelum kuis dihentikan
-        const DURASI_KUIS_MENIT = 20;       // durasi kuis (menit)
-        const JUMLAH_SOAL = 30;             // jumlah soal yang ditampilkan per kuis
-        const ANTI_CHEAT_SELALU_AKTIF = false; // true = pantau terus, false = hanya saat kuis
-        const IZINKAN_KERJAKAN_ULANG = false;  // false = 1 bab hanya 1x kesempatan
+        const MAX_PELANGGARAN = 5;
+        const DURASI_KUIS_MENIT = 20;
+        const JUMLAH_SOAL = 30;
+        const ANTI_CHEAT_SELALU_AKTIF = false;
+
+        // ============================================================
+        // ✨ KONFIGURASI KERJAKAN ULANG
+        // ============================================================
+        const IZINKAN_KERJAKAN_ULANG = true;   // true = siswa boleh mengulang kuis
+        const SIMPAN_NILAI_TERTINGGI = true;    // true = hanya nilai tertinggi yang disimpan (tidak akan turun)
+        const TAMPILKAN_BADGE_PERCOBAAN = true; // tampilkan berapa kali siswa sudah mengerjakan
 
         // ============================================================
         // DATA SISWA
@@ -1120,7 +770,7 @@
         // STATE
         // ============================================================
         let currentUser = null;
-        let quizState = { bab: null, answers: [], questions: [], startTime: 0 };
+        let quizState = { bab: null, answers: [], questions: [], startTime: 0, percobaanKe: 0 };
         let allScores = {};
         let rankingCache = [];
 
@@ -1158,6 +808,7 @@
         const btnLogout = $('btnLogout');
         const btnShowRanking = $('btnShowRanking');
         const greetingText = $('greetingText');
+        const infoRedo = $('infoRedo');
 
         // ============================================================
         // HELPERS
@@ -1300,10 +951,8 @@
         }
 
         // ============================================================
-        // ============  ANTI-CHEAT SYSTEM  ===========================
+        // ANTI-CHEAT SYSTEM
         // ============================================================
-
-        /** Membunyikan alarm berulang menggunakan Web Audio API */
         function playAlarm() {
             try {
                 if (!alarmCtx) {
@@ -1312,19 +961,13 @@
                     alarmCtx = new AC();
                 }
                 if (alarmCtx.state === 'suspended') alarmCtx.resume();
-
                 if (alarmInterval) clearInterval(alarmInterval);
                 let count = 0;
                 alarmInterval = setInterval(() => {
-                    if (count >= 8) {
-                        clearInterval(alarmInterval);
-                        alarmInterval = null;
-                        return;
-                    }
+                    if (count >= 8) { clearInterval(alarmInterval); alarmInterval = null; return; }
                     const osc = alarmCtx.createOscillator();
                     const gain = alarmCtx.createGain();
-                    osc.connect(gain);
-                    gain.connect(alarmCtx.destination);
+                    osc.connect(gain); gain.connect(alarmCtx.destination);
                     osc.type = 'square';
                     osc.frequency.value = count % 2 === 0 ? 960 : 640;
                     gain.gain.setValueAtTime(0.0001, alarmCtx.currentTime);
@@ -1334,19 +977,13 @@
                     osc.stop(alarmCtx.currentTime + 0.32);
                     count++;
                 }, 340);
-            } catch (e) {
-                console.warn('Alarm gagal dibunyikan:', e);
-            }
+            } catch (e) { console.warn('Alarm gagal:', e); }
         }
 
         function stopAlarm() {
-            if (alarmInterval) {
-                clearInterval(alarmInterval);
-                alarmInterval = null;
-            }
+            if (alarmInterval) { clearInterval(alarmInterval); alarmInterval = null; }
         }
 
-        /** Tampilkan peringatan besar di layar */
         function showCheatWarning(jenis) {
             $('cheatWarningText').innerHTML =
                 'Anda terdeteksi <strong>' + jenis + '</strong>.<br>' +
@@ -1356,12 +993,10 @@
             $('cheatWarning').classList.remove('hidden');
         }
 
-        /** Catat satu pelanggaran */
         function catatPelanggaran(jenis) {
             const aktif = quizActive || ANTI_CHEAT_SELALU_AKTIF;
             if (!aktif) return;
             if (warningCooldown) return;
-
             warningCooldown = true;
             setTimeout(() => { warningCooldown = false; }, 2500);
 
@@ -1373,11 +1008,8 @@
             });
 
             playAlarm();
-
             try { if (navigator.vibrate) navigator.vibrate([350, 120, 350, 120, 350]); } catch (_) {}
-
             showCheatWarning(jenis);
-
             console.warn('🚨 PELANGGARAN #' + violationCount + ':', jenis);
 
             if (violationCount >= MAX_PELANGGARAN) {
@@ -1393,61 +1025,32 @@
         async function autoSubmitKarenaCurang() {
             $('cheatWarning').classList.add('hidden');
             $('cheatWarningOk').style.display = '';
-            if (quizActive && !quizSubmitting) {
-                await submitQuiz(true, true);
-            }
+            if (quizActive && !quizSubmitting) await submitQuiz(true, true);
         }
 
-        /* ---------- EVENT DETEKSI KECURANGAN ---------- */
-
-        // 1. Berpindah tab / minimize browser
         document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                catatPelanggaran('berpindah tab atau membuka aplikasi lain');
-            }
+            if (document.hidden) catatPelanggaran('berpindah tab atau membuka aplikasi lain');
         });
-
-        // 2. Jendela kehilangan fokus (Alt+Tab, buka aplikasi lain)
         window.addEventListener('blur', () => {
             catatPelanggaran('keluar dari jendela kuis (membuka aplikasi lain)');
         });
-
-        // 3. Keluar dari mode layar penuh
         document.addEventListener('fullscreenchange', () => {
-            if (quizActive && fullscreenActive && !document.fullscreenElement) {
+            if (quizActive && fullscreenActive && !document.fullscreenElement)
                 catatPelanggaran('keluar dari mode layar penuh');
-            }
         });
         document.addEventListener('webkitfullscreenchange', () => {
-            if (quizActive && fullscreenActive && !document.webkitFullscreenElement) {
+            if (quizActive && fullscreenActive && !document.webkitFullscreenElement)
                 catatPelanggaran('keluar dari mode layar penuh');
-            }
         });
-
-        // 4. Blokir klik kanan
         document.addEventListener('contextmenu', (e) => {
-            if (quizActive || ANTI_CHEAT_SELALU_AKTIF) {
-                e.preventDefault();
-                return false;
-            }
+            if (quizActive || ANTI_CHEAT_SELALU_AKTIF) { e.preventDefault(); return false; }
         });
-
-        // 5. Blokir copy / cut / paste
         ['copy', 'cut', 'paste'].forEach((evt) => {
             document.addEventListener(evt, (e) => {
-                if (quizActive) {
-                    e.preventDefault();
-                    return false;
-                }
+                if (quizActive) { e.preventDefault(); return false; }
             });
         });
-
-        // 6. Blokir seleksi teks saat kuis
-        document.addEventListener('selectstart', (e) => {
-            if (quizActive) e.preventDefault();
-        });
-
-        // 7. Blokir tombol pintas mencurigakan (F12, Ctrl+Shift+I, Ctrl+U, PrintScreen, dll.)
+        document.addEventListener('selectstart', (e) => { if (quizActive) e.preventDefault(); });
         document.addEventListener('keydown', (e) => {
             const k = (e.key || '').toLowerCase();
             const ctrl = e.ctrlKey || e.metaKey;
@@ -1457,35 +1060,23 @@
                 (ctrl && ['u', 's', 'p'].includes(k)) ||
                 k === 'printscreen' ||
                 (e.altKey && k === 'tab');
-
             if (blocked) {
                 e.preventDefault();
                 if (quizActive) catatPelanggaran('mencoba membuka alat curang (tombol: ' + (e.key || k) + ')');
                 return false;
             }
-            // Blokir Esc agar tidak menutup modal kuis
-            if (e.key === 'Escape' && quizActive) {
-                e.preventDefault();
-            }
+            if (e.key === 'Escape' && quizActive) e.preventDefault();
         });
+        document.addEventListener('dragstart', (e) => { if (quizActive) e.preventDefault(); });
 
-        // 8. Blokir drag gambar/teks
-        document.addEventListener('dragstart', (e) => {
-            if (quizActive) e.preventDefault();
-        });
-
-        /* ---------- MASUK / KELUAR LAYAR PENUH ---------- */
         async function enterFullscreen() {
             try {
                 const el = document.documentElement;
                 if (el.requestFullscreen) { await el.requestFullscreen(); fullscreenActive = true; }
                 else if (el.webkitRequestFullscreen) { el.webkitRequestFullscreen(); fullscreenActive = true; }
                 else fullscreenActive = false;
-            } catch (_) {
-                fullscreenActive = false;
-            }
+            } catch (_) { fullscreenActive = false; }
         }
-
         async function exitFullscreen() {
             try {
                 if (document.fullscreenElement && document.exitFullscreen) await document.exitFullscreen();
@@ -1495,7 +1086,7 @@
         }
 
         // ============================================================
-        // SIMPAN / BACA NILAI (Firebase Realtime Database)
+        // SIMPAN / BACA NILAI
         // ============================================================
         async function loadScores() {
             try {
@@ -1507,7 +1098,6 @@
                 const res = await fetch(`${FIREBASE_DB_URL}/${SCORES_PATH}.json`, { cache: 'no-store' });
                 if (!res.ok) throw new Error('HTTP ' + res.status);
                 const data = await res.json();
-
                 const remote = {};
                 if (data) {
                     Object.values(data).forEach((entry) => {
@@ -1525,9 +1115,11 @@
             return allScores;
         }
 
-        async function setStudentScore(student, bab, score) {
+        async function setStudentScore(student, bab, score, attempts) {
             if (!allScores[student]) allScores[student] = {};
             allScores[student][bab] = score;
+            const attemptsKey = bab + '_attempts';
+            allScores[student][attemptsKey] = attempts;
             localStorage.setItem('srt39_scores', JSON.stringify(allScores));
 
             try {
@@ -1535,20 +1127,20 @@
                 const res = await fetch(`${FIREBASE_DB_URL}/${SCORES_PATH}/${key}.json`, {
                     method: 'PATCH',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name: student, [bab]: score })
+                    body: JSON.stringify({ name: student, [bab]: score, [attemptsKey]: attempts })
                 });
                 if (!res.ok) throw new Error('HTTP ' + res.status);
-                console.log('✅ Nilai terkirim ke server');
+                console.log('✅ Nilai & percobaan terkirim ke server');
             } catch (err) {
                 console.warn('⚠️ Gagal kirim ke server. Disimpan di antrean:', err);
-                queuePending(student, bab, score);
+                queuePending(student, bab, score, attempts);
             }
         }
 
-        function queuePending(student, bab, score) {
+        function queuePending(student, bab, score, attempts) {
             try {
                 const q = JSON.parse(localStorage.getItem('srt39_pending') || '[]');
-                q.push({ student, bab, score });
+                q.push({ student, bab, score, attempts });
                 localStorage.setItem('srt39_pending', JSON.stringify(q));
             } catch (_) {}
         }
@@ -1561,15 +1153,14 @@
             for (const item of q) {
                 try {
                     const key = encodeURIComponent(studentKey(item.student));
+                    const attemptsKey = item.bab + '_attempts';
                     const res = await fetch(`${FIREBASE_DB_URL}/${SCORES_PATH}/${key}.json`, {
                         method: 'PATCH',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ name: item.student, [item.bab]: item.score })
+                        body: JSON.stringify({ name: item.student, [item.bab]: item.score, [attemptsKey]: item.attempts || 1 })
                     });
                     if (!res.ok) throw new Error('HTTP ' + res.status);
-                } catch (_) {
-                    remaining.push(item);
-                }
+                } catch (_) { remaining.push(item); }
             }
             localStorage.setItem('srt39_pending', JSON.stringify(remaining));
         }
@@ -1577,6 +1168,12 @@
         function getStudentScore(student, bab) {
             if (!allScores[student]) return null;
             return allScores[student][bab] !== undefined ? allScores[student][bab] : null;
+        }
+
+        function getStudentAttempts(student, bab) {
+            if (!allScores[student]) return 0;
+            const v = allScores[student][bab + '_attempts'];
+            return v !== undefined ? v : 0;
         }
 
         function getAverageScore(student) {
@@ -1590,16 +1187,18 @@
         }
 
         // ============================================================
-        // KIRIM LAPORAN KE EMAIL GURU (FormSubmit)
+        // KIRIM LAPORAN KE EMAIL GURU
         // ============================================================
         async function kirimLaporanKeGuru(hasil) {
             const payload = {
-                _subject: `[SRT 39 GARUT] ${hasil.nama} - ${getBabLabel(hasil.bab)} - Nilai ${hasil.score}`,
+                _subject: `[SRT 39 GARUT] ${hasil.nama} - ${getBabLabel(hasil.bab)} - Nilai ${hasil.score}${hasil.percobaanKe > 1 ? ' (Percobaan ke-' + hasil.percobaanKe + ')' : ''}`,
                 _template: 'table',
                 _captcha: 'false',
                 'Nama Siswa': hasil.nama,
                 'Bab': `${getBabLabel(hasil.bab)} - ${getBabTitle(hasil.bab)}`,
-                'NILAI': hasil.score,
+                'Percobaan Ke': hasil.percobaanKe,
+                'NILAI (percobaan ini)': hasil.score,
+                'Nilai Terbaik Disimpan': hasil.nilaiTersimpan,
                 'Jawaban Benar': `${hasil.correct} dari ${hasil.total}`,
                 'Jawaban Salah': `${hasil.total - hasil.correct}`,
                 'Durasi Pengerjaan': hasil.durasi,
@@ -1609,7 +1208,6 @@
                 'Riwayat Pelanggaran': hasil.detailPelanggaran,
                 'Rincian Jawaban': hasil.rincian
             };
-
             try {
                 const res = await fetch(FORMSUBMIT_URL, {
                     method: 'POST',
@@ -1647,14 +1245,9 @@
                         body: JSON.stringify(payload)
                     });
                     if (!res.ok) throw new Error('HTTP ' + res.status);
-                } catch (_) {
-                    remaining.push(payload);
-                }
+                } catch (_) { remaining.push(payload); }
             }
             localStorage.setItem('srt39_pending_email', JSON.stringify(remaining));
-            if (q.length !== remaining.length) {
-                console.log(`📧 ${q.length - remaining.length} laporan tertunda berhasil dikirim`);
-            }
         }
 
         // ============================================================
@@ -1665,13 +1258,43 @@
             dashName.textContent = currentUser;
             dashAvgScore.textContent = `⭐ Rata-rata: ${getAverageScore(currentUser)}`;
 
+            // Sembunyikan info redo jika fitur dinonaktifkan
+            if (infoRedo) {
+                if (IZINKAN_KERJAKAN_ULANG) infoRedo.classList.remove('hidden');
+                else infoRedo.classList.add('hidden');
+            }
+
             const babKeys = ['bab1', 'bab2', 'bab3', 'bab4', 'bab5'];
             babGrid.innerHTML = '';
             babKeys.forEach((bab) => {
                 const score = getStudentScore(currentUser, bab);
+                const attempts = getStudentAttempts(currentUser, bab);
                 const done = score !== null && score !== undefined;
                 const card = document.createElement('div');
                 card.className = 'bab-card';
+
+                let scoreBoxHtml = '';
+                if (done) {
+                    scoreBoxHtml = `
+                        <div class="score-box">
+                            <div>
+                                <div class="score-label-mini">NILAI TERBAIK</div>
+                                <div class="score-value">${score}</div>
+                            </div>
+                            ${TAMPILKAN_BADGE_PERCOBAAN && attempts > 0 ? `<span class="attempts-badge">🔄 ${attempts}x percobaan</span>` : ''}
+                        </div>
+                    `;
+                }
+
+                let btnKuisHtml = '';
+                if (!done) {
+                    btnKuisHtml = `<button class="btn-kuis" data-bab="${bab}">📝 Kuis</button>`;
+                } else if (IZINKAN_KERJAKAN_ULANG) {
+                    btnKuisHtml = `<button class="btn-kuis btn-redo" data-bab="${bab}">🔄 Kerjakan Ulang</button>`;
+                } else {
+                    btnKuisHtml = `<button class="btn-kuis" data-bab="${bab}" disabled>✅ Sudah Dikerjakan</button>`;
+                }
+
                 card.innerHTML = `
                     <div class="bab-header">
                         <span class="bab-number">${getBabLabel(bab)}</span>
@@ -1679,12 +1302,10 @@
                     </div>
                     <h3>${getBabTitle(bab)}</h3>
                     <div class="bab-summary">${getBabSummary(bab)}</div>
-                    ${done ? `<div style="font-weight:700;color:#1a3a5c;margin-bottom:8px;">Nilai: ${score}</div>` : ''}
+                    ${scoreBoxHtml}
                     <div class="bab-actions">
                         <button class="btn-materi" data-bab="${bab}">📖 Materi</button>
-                        <button class="btn-kuis" data-bab="${bab}" ${(done && !IZINKAN_KERJAKAN_ULANG) ? 'disabled' : ''}>
-                            ${done ? (IZINKAN_KERJAKAN_ULANG ? '🔄 Kerjakan Ulang' : '✅ Sudah Dikerjakan') : '📝 Kuis'}
-                        </button>
+                        ${btnKuisHtml}
                     </div>
                 `;
                 babGrid.appendChild(card);
@@ -1723,11 +1344,16 @@
             warningCooldown = false;
             document.body.classList.add('quiz-mode');
 
-            // ---- Ambil soal secara ACAK (berbeda tiap kali dibuka) ----
+            // ---- Cek nilai & percobaan sebelumnya ----
+            const skorLama = getStudentScore(currentUser, bab);
+            const percobaanLama = getStudentAttempts(currentUser, bab);
+            quizState.percobaanKe = percobaanLama + 1;
+
+            // ---- Ambil soal secara ACAK ----
             const shuffled = shuffleArray([...pool]);
             const selected = shuffled.slice(0, Math.min(JUMLAH_SOAL, shuffled.length));
 
-            // ---- Acak juga URUTAN PILIHAN JAWABAN setiap soal ----
+            // ---- Acak juga URUTAN PILIHAN JAWABAN ----
             const prepared = selected.map((q) => {
                 const opts = q.o.map((text, i) => ({ text, correct: i === q.a }));
                 shuffleArray(opts);
@@ -1738,13 +1364,21 @@
                 };
             });
 
-            // ---- Bangun HTML kuis ----
+            const infoPercobaanHtml = (percobaanLama > 0) ? `
+                <div class="quiz-guard-banner" style="background:#eef4fa;border-left-color:#1a3a5c;color:#1a3a5c;">
+                    🔄 <strong>Ini adalah percobaan ke-${quizState.percobaanKe}.</strong>
+                    Nilai terbaik Anda sebelumnya di bab ini: <strong>${skorLama}</strong>.
+                    Sistem hanya menyimpan <strong>nilai tertinggi</strong>, jadi nilai Anda tidak akan turun.
+                </div>
+            ` : '';
+
             let html = `
                 <div class="quiz-progress">
                     <span>📝 <strong>${getBabLabel(bab)}</strong> – ${getBabTitle(bab)}</span>
                     <span class="quiz-timer" id="quizTimer">⏱ --:--</span>
                     <span id="quizCounter">0 / ${prepared.length}</span>
                 </div>
+                ${infoPercobaanHtml}
                 <div class="quiz-guard-banner">
                     🔒 <strong>Mode Ujian Terkunci.</strong> Dilarang berpindah tab, membuka aplikasi lain,
                     keluar dari layar penuh, klik kanan, menyalin, atau membuka alat pengembang.
@@ -1774,23 +1408,20 @@
                 <div id="unansweredWarn" class="quiz-alert-lock" style="display:none;"></div>
                 <button class="btn-submit-quiz" id="btnSubmitQuiz">✅ Kirim Jawaban</button>
             `;
-            modalTitle.textContent = `📝 Kuis ${getBabLabel(bab)}`;
+            modalTitle.textContent = `📝 Kuis ${getBabLabel(bab)}${quizState.percobaanKe > 1 ? ' (Percobaan ke-' + quizState.percobaanKe + ')' : ''}`;
             modalBody.innerHTML = html;
             modalOverlay.classList.add('active');
 
-            // ---- Simpan state kuis ----
             quizState.bab = bab;
             quizState.questions = prepared;
             quizState.answers = new Array(prepared.length).fill(null);
             quizState.startTime = Date.now();
 
-            // ---- Timer kuis ----
             quizEndTime = Date.now() + DURASI_KUIS_MENIT * 60 * 1000;
             if (quizTimerInterval) clearInterval(quizTimerInterval);
             quizTimerInterval = setInterval(updateQuizTimer, 1000);
             updateQuizTimer();
 
-            // ---- Listener jawaban ----
             document.querySelectorAll('.quiz-question input[type="radio"]').forEach((radio) => {
                 radio.addEventListener('change', () => {
                     const idx = parseInt(radio.closest('.quiz-question').dataset.idx);
@@ -1811,7 +1442,6 @@
                 submitQuiz(false, false);
             });
 
-            // ---- Masuk mode layar penuh ----
             await enterFullscreen();
 
             function updateQuizCounter() {
@@ -1830,7 +1460,6 @@
             el.textContent = `⏱ ${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
             el.style.color = sisa < 60000 ? '#e74c3c' : '#1a3a5c';
             el.style.background = sisa < 60000 ? '#fdecea' : '#eef4fa';
-
             if (sisa <= 0) {
                 if (quizTimerInterval) { clearInterval(quizTimerInterval); quizTimerInterval = null; }
                 if (quizActive && !quizSubmitting) submitQuiz(true, false);
@@ -1838,7 +1467,7 @@
         }
 
         // ============================================================
-        // SUBMIT KUIS
+        // SUBMIT KUIS (dengan dukungan KERJAKAN ULANG)
         // ============================================================
         async function submitQuiz(waktuHabis, curang) {
             if (!quizActive || quizSubmitting) return;
@@ -1873,11 +1502,50 @@
             const durasiDetik = Math.round((Date.now() - quizState.startTime) / 1000);
             const durasi = `${Math.floor(durasiDetik / 60)} menit ${durasiDetik % 60} detik`;
             const waktuSelesai = new Date().toLocaleString('id-ID');
+            const percobaanKe = quizState.percobaanKe;
 
-            // Simpan nilai
-            await setStudentScore(currentUser, quizState.bab, score);
+            // =========================================================
+            // ✨ LOGIKA PERBAIKAN NILAI (KERJAKAN ULANG)
+            // =========================================================
+            const skorLama = getStudentScore(currentUser, quizState.bab);
+            let nilaiTersimpan = score;
+            let pesanPerbaikan = '';
 
-            // Susun rincian untuk email
+            if (skorLama !== null && skorLama !== undefined && percobaanKe > 1) {
+                if (SIMPAN_NILAI_TERTINGGI) {
+                    if (score > skorLama) {
+                        nilaiTersimpan = score;
+                        pesanPerbaikan = `
+                            <div style="background:linear-gradient(135deg,#eafaf1,#d5f5e3);color:#1e8449;padding:14px;border-radius:14px;margin:12px 0;font-weight:700;border-left:5px solid #27ae60;">
+                                🎉 <strong>Selamat!</strong> Nilai Anda meningkat dari <span style="text-decoration:line-through;opacity:0.7;">${skorLama}</span> menjadi <strong style="font-size:1.2rem;">${score}</strong>.
+                                Nilai terbaik telah diperbarui!
+                            </div>`;
+                    } else if (score === skorLama) {
+                        nilaiTersimpan = score;
+                        pesanPerbaikan = `
+                            <div style="background:#eef4fa;color:#1a3a5c;padding:14px;border-radius:14px;margin:12px 0;font-weight:600;border-left:5px solid #2b5f8a;">
+                                📊 Nilai Anda sama dengan sebelumnya (${skorLama}). Nilai tetap dipertahankan.
+                            </div>`;
+                    } else {
+                        nilaiTersimpan = skorLama;
+                        pesanPerbaikan = `
+                            <div style="background:linear-gradient(135deg,#fff4e5,#ffe6c7);color:#7a4b00;padding:14px;border-radius:14px;margin:12px 0;font-weight:600;border-left:5px solid #f5a623;">
+                                📌 Nilai percobaan ini (<strong>${score}</strong>) lebih rendah dari nilai terbaik Anda sebelumnya (<strong>${skorLama}</strong>).
+                                <br>Nilai terbaik tetap dipertahankan. <strong>Jangan menyerah, terus semangat belajar!</strong>
+                            </div>`;
+                    }
+                } else {
+                    nilaiTersimpan = score;
+                    pesanPerbaikan = `
+                        <div style="background:#eef4fa;color:#1a3a5c;padding:14px;border-radius:14px;margin:12px 0;font-weight:600;border-left:5px solid #2b5f8a;">
+                            📊 Nilai sebelumnya: ${skorLama} → Nilai baru: ${score}.
+                        </div>`;
+                }
+            }
+
+            // Simpan nilai & jumlah percobaan
+            await setStudentScore(currentUser, quizState.bab, nilaiTersimpan, percobaanKe);
+
             const rincian = details
                 .map((d, i) => `${i + 1}. ${d.q}\n   Jawaban siswa : ${d.user}\n   Kunci         : ${d.correct}\n   Hasil         : ${d.isCorrect ? 'BENAR' : 'SALAH'}`)
                 .join('\n\n');
@@ -1886,7 +1554,7 @@
                 ? violationsLog.map((v, i) => `${i + 1}) [${v.waktu}] ${v.jenis} (${v.bab})`).join('\n')
                 : 'Tidak ada pelanggaran.';
 
-            // ---- Tampilkan hasil di layar ----
+            // ---- Catatan curang ----
             let catatanCurang = '';
             if (curang || violationCount >= MAX_PELANGGARAN) {
                 catatanCurang = `<div style="background:#fdecea;color:#c0392b;padding:12px;border-radius:12px;margin:12px 0;font-weight:700;">
@@ -1908,11 +1576,24 @@
                 </div>`;
             }
 
+            const infoPercobaan = percobaanKe > 1
+                ? `<div style="display:inline-block;background:#1a3a5c;color:#fff;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:700;margin-bottom:8px;">🔄 Percobaan ke-${percobaanKe}</div>`
+                : '';
+
+            const nilaiTersimpanInfo = (nilaiTersimpan !== score)
+                ? `<div style="font-size:0.85rem;color:#7a4b00;background:#fff4e5;padding:8px 14px;border-radius:10px;margin:8px auto;display:inline-block;font-weight:600;">
+                       📌 Nilai terbaik tersimpan: <strong>${nilaiTersimpan}</strong>
+                   </div>`
+                : '';
+
             let resultHtml = `
                 <div class="quiz-result">
+                    ${infoPercobaan}
                     ${catatanCurang}
+                    ${pesanPerbaikan}
                     <div class="score-label">Nilai Kuis — ${getBabLabel(quizState.bab)}</div>
                     <div class="score-big">${score}<span> / 100</span></div>
+                    ${nilaiTersimpanInfo}
                     <div style="margin:6px 0 12px;font-weight:600;color:#1a3a5c;">${correct} dari ${total} jawaban benar</div>
                     <div style="font-size:0.85rem;color:#666;margin-bottom:10px;">
                         ⏱ Durasi: ${durasi} &nbsp;|&nbsp; 🚨 Pelanggaran: ${violationCount}
@@ -1928,6 +1609,7 @@
                     </div>
                     <div id="emailStatusBox" class="email-status ok">📧 Mengirim laporan ke email guru…</div>
                     <button class="btn-submit-quiz" style="background:linear-gradient(135deg,#1a3a5c,#2b5f8a);margin-top:14px;" id="btnCloseResult">Tutup</button>
+                    ${IZINKAN_KERJAKAN_ULANG ? `<button class="btn-submit-quiz btn-redo" style="background:linear-gradient(135deg,#f9c74f,#f5a623);color:#1a3a5c;margin-top:10px;" id="btnRedoFromResult">🔄 Kerjakan Ulang Bab Ini</button>` : ''}
                 </div>
             `;
             modalBody.innerHTML = resultHtml;
@@ -1938,11 +1620,23 @@
                 renderDashboard();
             });
 
-            // ---- Kirim laporan ke email guru (background) ----
+            const btnRedo = document.getElementById('btnRedoFromResult');
+            if (btnRedo) {
+                btnRedo.addEventListener('click', () => {
+                    quizSubmitting = false;
+                    const bab = quizState.bab;
+                    modalOverlay.classList.remove('active');
+                    setTimeout(() => { startQuiz(bab); }, 350);
+                });
+            }
+
+            // ---- Kirim laporan ke email guru ----
             kirimLaporanKeGuru({
                 nama: currentUser,
                 bab: quizState.bab,
                 score: score,
+                nilaiTersimpan: nilaiTersimpan,
+                percobaanKe: percobaanKe,
                 correct: correct,
                 total: total,
                 durasi: durasi,
@@ -1996,7 +1690,7 @@
 
             let html = `
                 <div style="margin-bottom:12px;font-weight:500;color:#555;">
-                    🏆 Peringkat berdasarkan rata-rata nilai kuis (0–100) — data online
+                    🏆 Peringkat berdasarkan rata-rata nilai terbaik kuis (0–100) — data online
                 </div>
                 <div class="ranking-table-wrap">
                     <table class="ranking-table">
@@ -2022,7 +1716,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div style="margin-top:14px;font-size:0.85rem;color:#888;">* Kosong (-) = belum mengerjakan.</div>
+                <div style="margin-top:14px;font-size:0.85rem;color:#888;">* Kosong (-) = belum mengerjakan. Nilai yang ditampilkan adalah nilai terbaik.</div>
                 <button class="btn-submit-quiz" style="background:linear-gradient(135deg,#1a3a5c,#2b5f8a);margin-top:16px;" id="btnRefreshRanking">🔄 Muat Ulang Peringkat</button>
             `;
             modalBody.innerHTML = html;
@@ -2070,10 +1764,8 @@
             e.preventDefault();
             doLogin(usernameInput.value.trim(), passwordInput.value.trim());
         });
-
         btnLogout.addEventListener('click', doLogout);
 
-        // Tutup modal — diblokir saat kuis berlangsung
         closeModal.addEventListener('click', () => {
             if (quizActive) {
                 const msg = document.getElementById('quizLockMsg');
@@ -2086,7 +1778,6 @@
             }
             modalOverlay.classList.remove('active');
         });
-
         modalOverlay.addEventListener('click', (e) => {
             if (e.target === modalOverlay) {
                 if (quizActive) {
@@ -2107,19 +1798,16 @@
             if (e.key === 'Enter') loginForm.dispatchEvent(new Event('submit'));
         });
 
-        // Tombol "Saya Mengerti" pada peringatan anti-cheat
         $('cheatWarningOk').addEventListener('click', () => {
             $('cheatWarning').classList.add('hidden');
             stopAlarm();
         });
 
-        // Kirim ulang data tertunda ketika internet kembali online
         window.addEventListener('online', () => {
             flushPending();
             flushPendingEmails();
         });
 
-        // Cegah halaman tertutup saat kuis berlangsung
         window.addEventListener('beforeunload', (e) => {
             if (quizActive) {
                 e.preventDefault();
@@ -2151,6 +1839,7 @@
             console.log(`📚 ${STUDENTS.length} siswa terdaftar | 150 soal (30 per bab)`);
             console.log('🔑 Login: nama lengkap, password: pancasila');
             console.log('🔒 Anti-Cheat: AKTIF saat kuis | 📧 Laporan → ' + EMAIL_GURU);
+            console.log('🔄 Kerjakan Ulang: ' + (IZINKAN_KERJAKAN_ULANG ? 'AKTIF (simpan nilai tertinggi)' : 'NONAKTIF'));
         })();
     </script>
 </body>
