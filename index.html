@@ -88,6 +88,16 @@
             border-radius: 30px;
             font-weight: 500;
         }
+        .badge-secure {
+            background: rgba(39, 174, 96, 0.25);
+            border: 1px solid rgba(39, 174, 96, 0.6);
+            color: #b8f5cd;
+            padding: 5px 14px;
+            border-radius: 30px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+        }
         .btn-logout {
             background: rgba(255, 255, 255, 0.15);
             border: 1px solid rgba(255, 255, 255, 0.25);
@@ -343,12 +353,10 @@
             box-shadow: 0 4px 12px rgba(26, 58, 92, 0.25);
         }
         .btn-kuis:disabled {
-            opacity: 0.4;
+            opacity: 0.55;
             cursor: not-allowed;
             transform: none !important;
             box-shadow: none !important;
-        }
-        .btn-kuis.done {
             background: #27ae60;
         }
 
@@ -516,6 +524,36 @@
             margin: 12px 0 18px;
             font-weight: 600;
             color: #1a3a5c;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .quiz-timer {
+            background: #eef4fa;
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-variant-numeric: tabular-nums;
+            font-size: 0.9rem;
+        }
+        .quiz-alert-lock {
+            background: #fdecea;
+            border: 1px solid #f5b7b1;
+            color: #c0392b;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: none;
+        }
+        .quiz-guard-banner {
+            background: #fff4e5;
+            border-left: 5px solid #f5a623;
+            color: #7a4b00;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 0.82rem;
+            margin-bottom: 14px;
+            line-height: 1.5;
         }
         .btn-submit-quiz {
             width: 100%;
@@ -582,6 +620,21 @@
             color: #e74c3c;
             font-weight: 600;
         }
+        .email-status {
+            font-size: 0.82rem;
+            margin-top: 10px;
+            padding: 8px 12px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        .email-status.ok {
+            background: #eafaf1;
+            color: #1e8449;
+        }
+        .email-status.fail {
+            background: #fdecea;
+            color: #c0392b;
+        }
 
         /* RANKING */
         .ranking-table-wrap {
@@ -641,6 +694,101 @@
             border-radius: 10px;
         }
 
+        /* ==========================================================
+           ANTI-CHEAT WARNING OVERLAY
+           ========================================================== */
+        .cheat-warning {
+            position: fixed;
+            inset: 0;
+            z-index: 100000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+            background: rgba(170, 0, 0, 0.94);
+            animation: flashBg 0.45s infinite alternate;
+        }
+        @keyframes flashBg {
+            from { background: rgba(170, 0, 0, 0.94); }
+            to   { background: rgba(235, 35, 35, 0.97); }
+        }
+        .cheat-warning.hidden { display: none; }
+        .cheat-warning-box {
+            background: #fff;
+            max-width: 520px;
+            width: 100%;
+            border-radius: 26px;
+            padding: 30px 26px 26px;
+            text-align: center;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+            border: 5px solid #ffd400;
+            animation: shakeBox 0.5s;
+        }
+        @keyframes shakeBox {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-12px); }
+            40% { transform: translateX(12px); }
+            60% { transform: translateX(-8px); }
+            80% { transform: translateX(8px); }
+        }
+        .cheat-warning-box .cheat-icon {
+            font-size: 4rem;
+            line-height: 1;
+            animation: pulseIcon 0.6s infinite alternate;
+        }
+        @keyframes pulseIcon {
+            from { transform: scale(1); }
+            to { transform: scale(1.15); }
+        }
+        .cheat-warning-box h2 {
+            color: #c0392b;
+            font-size: 1.9rem;
+            margin: 8px 0 10px;
+            letter-spacing: 1px;
+        }
+        .cheat-warning-box p {
+            color: #333;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        .cheat-warning-box .cheat-count {
+            background: #fdecea;
+            border-radius: 14px;
+            padding: 10px;
+            font-weight: 800;
+            color: #c0392b;
+            font-size: 1.05rem;
+            margin: 14px 0;
+        }
+        .cheat-warning-box .cheat-count span {
+            font-size: 1.5rem;
+        }
+        .cheat-warning-box button {
+            background: linear-gradient(135deg, #c0392b, #e74c3c);
+            color: #fff;
+            border: none;
+            padding: 14px 40px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: 0.2s;
+        }
+        .cheat-warning-box button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(192, 57, 43, 0.4);
+        }
+
+        /* MODE KUIS: cegah seleksi teks & klik kanan */
+        body.quiz-mode {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
         /* UTILITY */
         .hidden {
             display: none !important;
@@ -648,48 +796,23 @@
         .text-center {
             text-align: center;
         }
-        .mt-8 {
-            margin-top: 8px;
-        }
-        .mt-16 {
-            margin-top: 16px;
-        }
-        .gap-8 {
-            gap: 8px;
-        }
+        .mt-8 { margin-top: 8px; }
+        .mt-16 { margin-top: 16px; }
+        .gap-8 { gap: 8px; }
 
         /* RESPONSIVE */
         @media (max-width: 500px) {
-            .app-header {
-                padding: 14px 16px;
-            }
-            .app-header .brand h1 {
-                font-size: 0.95rem;
-            }
-            .app-header .brand img {
-                height: 38px;
-                width: 38px;
-            }
-            .app-main {
-                padding: 16px;
-            }
-            .modal-box {
-                padding: 20px 16px 24px;
-            }
-            .bab-card {
-                padding: 16px;
-            }
-            .welcome-banner {
-                padding: 16px;
-                flex-direction: column;
-                text-align: center;
-            }
-            .login-form {
-                padding: 24px 18px;
-            }
-            .quiz-question {
-                padding: 14px 14px;
-            }
+            .app-header { padding: 14px 16px; }
+            .app-header .brand h1 { font-size: 0.95rem; }
+            .app-header .brand img { height: 38px; width: 38px; }
+            .app-main { padding: 16px; }
+            .modal-box { padding: 20px 16px 24px; }
+            .bab-card { padding: 16px; }
+            .welcome-banner { padding: 16px; flex-direction: column; text-align: center; }
+            .login-form { padding: 24px 18px; }
+            .quiz-question { padding: 14px 14px; }
+            .cheat-warning-box h2 { font-size: 1.5rem; }
+            .cheat-warning-box .cheat-icon { font-size: 3rem; }
         }
     </style>
 </head>
@@ -703,6 +826,7 @@
                 <h1>SRT 39 Garut <small>Pancasila Kelas VII</small></h1>
             </div>
             <div class="user-info" id="userInfo">
+                <span class="badge-secure" id="secureBadge">🔒 ANTI-CHEAT AKTIF</span>
                 <span class="greeting" id="greetingText">Halo, Siswa</span>
                 <button class="btn-logout" id="btnLogout">Keluar</button>
             </div>
@@ -756,75 +880,72 @@
         </div>
     </div>
 
+    <!-- ANTI-CHEAT WARNING OVERLAY -->
+    <div class="cheat-warning hidden" id="cheatWarning">
+        <div class="cheat-warning-box">
+            <div class="cheat-icon">🚨</div>
+            <h2>PERINGATAN KERAS!</h2>
+            <p id="cheatWarningText">Anda terdeteksi keluar dari halaman kuis.</p>
+            <div class="cheat-count">
+                Pelanggaran: <span id="cheatCount">0</span> / <span id="cheatMax">5</span>
+            </div>
+            <p style="font-size:0.85rem;color:#c0392b;font-weight:600;">
+                Seluruh pelanggaran dicatat dan akan dikirim ke email guru.<br>
+                Jika mencapai batas maksimal, kuis otomatis dihentikan!
+            </p>
+            <button id="cheatWarningOk">Saya Mengerti &amp; Lanjutkan</button>
+        </div>
+    </div>
+
     <script>
         // ============================================================
-        // KONFIGURASI FIREBASE REALTIME DATABASE
+        // KONFIGURASI
         // ============================================================
-        // Ganti URL di bawah dengan URL database Firebase Anda
-        // Contoh: https://srt39-garut-default-rtdb.asia-southeast1.firebasedatabase.app
+        // ⚠️ PENTING: Ganti dengan alamat EMAIL LENGKAP guru.
+        // Contoh: 'fauzi@fauzifaturohman.com' atau 'fauzifaturohman@gmail.com'
+        // FormSubmit akan mengirim email aktivasi ke alamat ini pada
+        // pengiriman PERTAMA. Klik tautan aktivasi di email tersebut.
+        const EMAIL_GURU = 'fauzifaturohman.com';
+        const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/' + EMAIL_GURU;
+
+        // Firebase Realtime Database (untuk papan peringkat)
         const FIREBASE_DB_URL = 'https://vii-pancasila-srt39garut-fe87b.firebaseapp.com/';
         const SCORES_PATH = 'srt39-scores';
+
+        // Anti-cheat
+        const MAX_PELANGGARAN = 5;          // batas pelanggaran sebelum kuis dihentikan
+        const DURASI_KUIS_MENIT = 20;       // durasi kuis (menit)
+        const JUMLAH_SOAL = 30;             // jumlah soal yang ditampilkan per kuis
+        const ANTI_CHEAT_SELALU_AKTIF = false; // true = pantau terus, false = hanya saat kuis
+        const IZINKAN_KERJAKAN_ULANG = false;  // false = 1 bab hanya 1x kesempatan
 
         // ============================================================
         // DATA SISWA
         // ============================================================
         const STUDENTS = [
-            "Agus Ramdani",
-            "Anisa Saputri",
-            "Eva Fauziah",
-            "Fanesa Anastasya",
-            "Hisma Hlipatul Padilah",
-            "Indria Adelia Putri",
-            "M Fatir",
-            "Moch Akbar Tri Hermawan",
-            "Muhamad Hanif Aliyudin",
-            "Muhamad Rehan Nurul Janah",
-            "Muhamad Samin Nugraha",
-            "Muhammad Idrus Pahmi Jaharsah",
-            "Muhammad Raehan",
-            "Perdiansah Pratama",
-            "Raisya Nurpadilah",
-            "Regi",
-            "Rehan",
-            "Risky",
-            "Salman Saepul Bagri",
-            "Salwa Aulia Zakiawans",
-            "Sifa Nuraini",
-            "Syifa Nurhayati",
-            "Yan Yan Abdul Hadi",
-            "Arman Maulana",
-            "De Pahri Putra Ramadan",
-            "Deri Muhammad",
-            "Dewangga Nugraha",
-            "Elsa Sabila Nurhalimah",
-            "Ihsan Maulana",
-            "Irna Raodotul Zanah",
-            "Lesti Julianti",
-            "Muhamad Hasanudin",
-            "Muhammad Zaki Aripin",
-            "Musnan Firdaus",
-            "Novi Rahmadani",
-            "Parhan Heriyansah",
-            "Pirmansyah Ramdani",
-            "Raihan Saputra",
-            "Rani",
-            "Reza Hanafiah",
-            "Rina",
-            "Sabit Maulana",
-            "Salsa Bila",
-            "Selli Khairunnisa",
-            "Siti Masitoh",
-            "Siti Paswa",
-            "Sri Mulyani",
-            "Sudirman",
-            "Yusup Awaludin",
-            "Zaki M. Kusumah"
+            "Agus Ramdani", "Anisa Saputri", "Eva Fauziah", "Fanesa Anastasya",
+            "Hisma Hlipatul Padilah", "Indria Adelia Putri", "M Fatir",
+            "Moch Akbar Tri Hermawan", "Muhamad Hanif Aliyudin",
+            "Muhamad Rehan Nurul Janah", "Muhamad Samin Nugraha",
+            "Muhammad Idrus Pahmi Jaharsah", "Muhammad Raehan",
+            "Perdiansah Pratama", "Raisya Nurpadilah", "Regi", "Rehan", "Risky",
+            "Salman Saepul Bagri", "Salwa Aulia Zakiawans", "Sifa Nuraini",
+            "Syifa Nurhayati", "Yan Yan Abdul Hadi", "Arman Maulana",
+            "De Pahri Putra Ramadan", "Deri Muhammad", "Dewangga Nugraha",
+            "Elsa Sabila Nurhalimah", "Ihsan Maulana", "Irna Raodotul Zanah",
+            "Lesti Julianti", "Muhamad Hasanudin", "Muhammad Zaki Aripin",
+            "Musnan Firdaus", "Novi Rahmadani", "Parhan Heriyansah",
+            "Pirmansyah Ramdani", "Raihan Saputra", "Rani", "Reza Hanafiah",
+            "Rina", "Sabit Maulana", "Salsa Bila", "Selli Khairunnisa",
+            "Siti Masitoh", "Siti Paswa", "Sri Mulyani", "Sudirman",
+            "Yusup Awaludin", "Zaki M. Kusumah"
         ];
 
         // ============================================================
-        // BANK SOAL (25 per bab, total 125)
+        // BANK SOAL — 30 SOAL PER BAB (total 150 soal)
         // ============================================================
         const QUESTION_BANK = {
+            /* ================= BAB 1 ================= */
             bab1: [
                 { q: "Apa kepanjangan dari BPUPK?", o: ["Badan Penyelidik Usaha Persiapan Kemerdekaan", "Badan Perjuangan Usaha Pemerintah Kemerdekaan", "Badan Penyusun Usulan Persiapan Kemerdekaan", "Badan Perumus Undang-Undang Pemerintah Kemerdekaan"], a: 0 },
                 { q: "Kapan BPUPK dibentuk?", o: ["1 Maret 1945", "29 Mei 1945", "1 Juni 1945", "17 Agustus 1945"], a: 0 },
@@ -850,8 +971,15 @@
                 { q: "Berapa jumlah anggota BPUPK pada sidang pertama?", o: ["62", "76", "21", "9"], a: 0 },
                 { q: "Siapa tokoh yang mengusulkan kata 'Pancasila'?", o: ["Mr. Muhammad Yamin", "Ir. Sukarno", "Drs. Mohammad Hatta", "Mr. Soepomo"], a: 1 },
                 { q: "Apa semboyan bangsa Indonesia yang mencerminkan persatuan dalam keberagaman?", o: ["Bhinneka Tunggal Ika", "Merdeka atau Mati", "Satu Nusa Satu Bangsa", "Indonesia Raya"], a: 0 },
-                { q: "Sidang BPUPK kedua membahas tentang?", o: ["Dasar negara", "Rancangan Undang-Undang Dasar", "Proklamasi", "Pembentukan PPKI"], a: 1 }
+                { q: "Sidang BPUPK kedua membahas tentang?", o: ["Dasar negara", "Rancangan Undang-Undang Dasar", "Proklamasi", "Pembentukan PPKI"], a: 1 },
+                { q: "Rumusan dasar negara yang disampaikan Mr. Muhammad Yamin pada 29 Mei 1945 meliputi?", o: ["Peri Kebangsaan, Peri Kemanusiaan, Peri Ketuhanan, Peri Kerakyatan, Kesejahteraan Rakyat", "Ketuhanan, Kemanusiaan, Persatuan, Kerakyatan, Keadilan", "Nasionalisme, Internasionalisme, Demokrasi, Sosialisme, Ketuhanan", "Pancasila, Trisila, Ekasila, Gotong Royong, Musyawarah"], a: 0 },
+                { q: "Gedung tempat sidang BPUPK dahulu bernama?", o: ["Gedung Chuo Sangi In", "Gedung Merdeka", "Gedung Sate", "Gedung Joang"], a: 0 },
+                { q: "Siapa yang membacakan teks Proklamasi Kemerdekaan Indonesia?", o: ["Drs. Mohammad Hatta", "Ir. Sukarno", "Mr. Achmad Soebardjo", "Sayuti Melik"], a: 1 },
+                { q: "Tugas utama PPKI adalah?", o: ["Mempersiapkan dan mengesahkan dasar negara serta UUD", "Menyusun teks proklamasi", "Merumuskan Piagam Jakarta", "Membentuk tentara nasional"], a: 0 },
+                { q: "Tiga tokoh yang mengusulkan rumusan dasar negara dalam sidang BPUPK adalah?", o: ["Mr. Muhammad Yamin, Mr. Soepomo, dan Ir. Sukarno", "Ir. Sukarno, Drs. Mohammad Hatta, dan Ki Hajar Dewantara", "Mr. Soepomo, dr. Radjiman, dan Mr. Achmad Soebardjo", "Drs. Mohammad Hatta, Sayuti Melik, dan Mr. Muhammad Yamin"], a: 0 }
             ],
+
+            /* ================= BAB 2 ================= */
             bab2: [
                 { q: "Sila pertama Pancasila berbunyi?", o: ["Kemanusiaan yang Adil dan Beradab", "Persatuan Indonesia", "Ketuhanan Yang Maha Esa", "Keadilan Sosial bagi Seluruh Rakyat Indonesia"], a: 2 },
                 { q: "Lambang sila pertama Pancasila adalah?", o: ["Bintang", "Rantai", "Pohon Beringin", "Kepala Banteng"], a: 0 },
@@ -877,8 +1005,15 @@
                 { q: "Hari kelahiran Pancasila diperingati setiap tanggal?", o: ["1 Juni", "22 Juni", "17 Agustus", "18 Agustus"], a: 0 },
                 { q: "Hari Kesaktian Pancasila diperingati setiap tanggal?", o: ["1 Juni", "1 Oktober", "22 Juni", "18 Agustus"], a: 1 },
                 { q: "Pancasila menjadi sumber dari segala sumber hukum artinya?", o: ["Semua peraturan tidak boleh bertentangan dengan Pancasila", "Pancasila hanya sebagai simbol", "Pancasila hanya untuk acara seremonial", "Pancasila tidak mengikat"], a: 0 },
-                { q: "Profil Pelajar Pancasila memiliki berapa karakter?", o: ["4", "5", "6", "7"], a: 2 }
+                { q: "Profil Pelajar Pancasila memiliki berapa karakter?", o: ["4", "5", "6", "7"], a: 2 },
+                { q: "Nilai-nilai Pancasila bersifat?", o: ["Universal dan objektif", "Terbatas dan subjektif", "Sementara dan berubah-ubah", "Hanya untuk orang dewasa"], a: 0 },
+                { q: "Contoh penerapan sila ketiga di masyarakat adalah?", o: ["Mengikuti upacara bendera dan melestarikan budaya daerah", "Memilih ketua RT", "Membantu korban bencana", "Beribadah tepat waktu"], a: 0 },
+                { q: "Apa yang dimaksud dengan gotong royong?", o: ["Bekerja sama untuk kepentingan bersama", "Bekerja sendiri tanpa bantuan", "Bersaing untuk menang", "Menolong dengan mengharap imbalan"], a: 0 },
+                { q: "Sikap yang mencerminkan sila keempat adalah?", o: ["Menghargai pendapat orang lain dalam musyawarah", "Memaksakan kehendak sendiri", "Membiarkan perbedaan pendapat", "Memilih pemimpin secara diam-diam"], a: 0 },
+                { q: "Manfaat menerapkan nilai Pancasila dalam kehidupan sehari-hari adalah?", o: ["Terciptanya kerukunan dan kedamaian", "Terjadinya persaingan tidak sehat", "Timbulnya perpecahan", "Hidup menjadi individualis"], a: 0 }
             ],
+
+            /* ================= BAB 3 ================= */
             bab3: [
                 { q: "Manusia disebut sebagai makhluk monodualis karena?", o: ["Makhluk individu dan makhluk sosial", "Makhluk Tuhan dan makhluk dunia", "Makhluk fisik dan rohani", "Makhluk rasional dan emosional"], a: 0 },
                 { q: "Apa yang dimaksud dengan norma?", o: ["Aturan atau petunjuk perilaku dalam masyarakat", "Hukuman bagi pelanggar", "Kebiasaan turun-temurun", "Peraturan pemerintah"], a: 0 },
@@ -901,11 +1036,18 @@
                 { q: "Di lingkungan bangsa dan negara, contoh penerapan norma adalah?", o: ["Mematuhi peraturan lalu lintas", "Menghormati orang tua", "Mengucapkan salam", "Berteman tanpa membeda-bedakan"], a: 0 },
                 { q: "Apa yang dimaksud dengan norma adat?", o: ["Aturan hidup berdasarkan kebiasaan turun-temurun", "Aturan dari Tuhan", "Aturan dari hati nurani", "Aturan dari negara"], a: 0 },
                 { q: "Contoh norma adat yang ada di Indonesia adalah?", o: ["Nyepi di Bali", "Beribadah", "Membayar pajak", "Memakai helm"], a: 0 },
-                { q: "Hubungan antara norma agama dan norma hukum adalah?", o: ["Saling melengkapi untuk menciptakan ketertiban", "Bertentangan", "Tidak berhubungan", "Sama-sama tidak mengikat"], a: 0 },
+                { q: "Hubungan antara norma agama dan norma hukum adalah?", o: ["Saling melengkapi untuk menciptakan ketertiban", "Bertentangan satu sama lain", "Tidak berhubungan", "Sama-sama tidak mengikat"], a: 0 },
                 { q: "Apa akibat jika seseorang melanggar norma?", o: ["Mendapat sanksi sesuai jenis norma", "Tidak ada akibat", "Mendapat hadiah", "Dihormati masyarakat"], a: 0 },
-                { q: "Mengapa norma hukum diperlukan?", o: ["Karena memberikan sanksi tegas dan efek jera", "Karena lebih mudah", "Karena tidak perlu kesadaran", "Karena hanya untuk orang dewasa"], a: 0 },
-                { q: "Sikap yang baik dalam menghadapi perbedaan di masyarakat adalah?", o: ["Toleransi dan saling menghargai", "Mengucilkan yang berbeda", "Memaksakan kehendak", "Membiarkan konflik"], a: 0 }
+                { q: "Mengapa norma hukum diperlukan?", o: ["Karena memberikan sanksi tegas dan efek jera", "Karena lebih mudah dibuat", "Karena tidak perlu kesadaran", "Karena hanya untuk orang dewasa"], a: 0 },
+                { q: "Sikap yang baik dalam menghadapi perbedaan di masyarakat adalah?", o: ["Toleransi dan saling menghargai", "Mengucilkan yang berbeda", "Memaksakan kehendak", "Membiarkan konflik"], a: 0 },
+                { q: "Norma hukum bersifat?", o: ["Memaksa dan mengikat", "Sukarela", "Tidak mengikat", "Hanya imbauan"], a: 0 },
+                { q: "Contoh pelanggaran norma kesopanan adalah?", o: ["Berbicara kasar kepada orang tua", "Mencuri barang", "Tidak beribadah", "Melanggar lalu lintas"], a: 0 },
+                { q: "Tujuan adanya norma dalam masyarakat adalah?", o: ["Menciptakan ketertiban dan kedamaian", "Membatasi kebebasan", "Menambah beban", "Memperbanyak aturan"], a: 0 },
+                { q: "Perbedaan utama norma hukum dengan norma lainnya adalah?", o: ["Memiliki sanksi yang tegas dan memaksa", "Bersumber dari hati nurani", "Tidak tertulis", "Hanya berlaku di sekolah"], a: 0 },
+                { q: "Sikap yang tepat ketika melihat pelanggaran norma di lingkungan sekitar adalah?", o: ["Menegur dengan baik atau melaporkan kepada pihak berwenang", "Membiarkan saja", "Ikut melanggar", "Merekam lalu menyebarkan"], a: 0 }
             ],
+
+            /* ================= BAB 4 ================= */
             bab4: [
                 { q: "Apa arti Bhinneka Tunggal Ika?", o: ["Persatuan dalam keragaman", "Berbeda-beda tetapi tetap satu", "Kesatuan dalam perbedaan", "Toleransi antarsuku"], a: 1 },
                 { q: "Di mana semboyan Bhinneka Tunggal Ika terdapat?", o: ["Pada burung Garuda", "Pada pita yang dicengkeram Garuda", "Pada perisai", "Pada ekor Garuda"], a: 1 },
@@ -924,15 +1066,22 @@
                 { q: "Hari raya umat Hindu adalah?", o: ["Natal", "Nyepi", "Idul Fitri", "Imlek"], a: 1 },
                 { q: "Apa yang dimaksud dengan ras?", o: ["Pengelompokan manusia berdasarkan ciri fisik", "Pengelompokan berdasarkan agama", "Pengelompokan berdasarkan suku", "Pengelompokan berdasarkan budaya"], a: 0 },
                 { q: "Contoh faktor penyebab keberagaman di Indonesia adalah?", o: ["Letak strategis, negara kepulauan, kondisi alam", "Hanya faktor agama", "Hanya faktor suku", "Hanya faktor politik"], a: 0 },
-                { q: "Apa dampak positif dari keberagaman?", o: ["Banyak alternatif dan kekayaan budaya", "Perpecahan", "Konflik", "Diskriminasi"], a: 0 },
+                { q: "Apa dampak positif dari keberagaman?", o: ["Banyak alternatif dan kekayaan budaya", "Perpecahan bangsa", "Konflik antarsuku", "Diskriminasi"], a: 0 },
                 { q: "Apa dampak negatif dari keberagaman?", o: ["Kekayaan budaya", "Konflik jika tidak dikelola dengan baik", "Persatuan", "Kerja sama"], a: 1 },
                 { q: "Contoh keberagaman antargolongan adalah?", o: ["Perbedaan profesi", "Perbedaan agama", "Perbedaan suku", "Perbedaan bahasa"], a: 0 },
                 { q: "Apa sikap yang tepat terhadap keberagaman?", o: ["Toleransi dan saling menghargai", "Mengucilkan yang berbeda", "Memaksakan kesamaan", "Mengabaikan perbedaan"], a: 0 },
-                { q: "Permainan tarik tambang menggambarkan?", o: ["Kerja sama dalam perbedaan", "Persaingan", "Perpecahan", "Kekalahan"], a: 0 },
+                { q: "Permainan tarik tambang menggambarkan?", o: ["Kerja sama dalam perbedaan", "Persaingan tidak sehat", "Perpecahan", "Kekalahan"], a: 0 },
                 { q: "Apa yang dimaksud dengan toleransi?", o: ["Menghargai dan menghormati perbedaan", "Memaksakan kehendak", "Mengabaikan orang lain", "Membeda-bedakan"], a: 0 },
                 { q: "Salah satu faktor perubahan sosial adalah?", o: ["Teknologi", "Hanya agama", "Hanya suku", "Hanya ras"], a: 0 },
-                { q: "Apa manfaat keberagaman bagi bangsa Indonesia?", o: ["Memperkaya budaya dan memperkuat persatuan", "Memecah belah bangsa", "Menyulitkan komunikasi", "Menimbulkan konflik"], a: 0 }
+                { q: "Apa manfaat keberagaman bagi bangsa Indonesia?", o: ["Memperkaya budaya dan memperkuat persatuan", "Memecah belah bangsa", "Menyulitkan komunikasi", "Menimbulkan konflik"], a: 0 },
+                { q: "Rumah adat Gadang berasal dari daerah?", o: ["Sumatra Barat", "Jawa Barat", "Papua", "Aceh"], a: 0 },
+                { q: "Tari Saman berasal dari daerah?", o: ["Aceh", "Bali", "Jawa Timur", "Sulawesi Selatan"], a: 0 },
+                { q: "Alat musik Angklung berasal dari daerah?", o: ["Jawa Barat", "Sumatra Utara", "Kalimantan", "Nusa Tenggara Timur"], a: 0 },
+                { q: "Apa yang dimaksud dengan multikulturalisme?", o: ["Pandangan yang menghargai keberagaman budaya", "Pandangan yang menganggap budaya sendiri paling baik", "Pandangan yang menolak perbedaan", "Pandangan yang menyamakan semua budaya"], a: 0 },
+                { q: "Manfaat kerja sama antarwarga yang berbeda suku adalah?", o: ["Mempererat persatuan dan memperkaya pengalaman", "Mempercepat perpecahan", "Menimbulkan konflik", "Membatasi pergaulan"], a: 0 }
             ],
+
+            /* ================= BAB 5 ================= */
             bab5: [
                 { q: "Apa unsur-unsur negara yang mutlak?", o: ["Wilayah, rakyat, pemerintahan berdaulat", "Wilayah, rakyat, pengakuan negara lain", "Rakyat, pemerintahan, pengakuan", "Wilayah, pemerintahan, pengakuan"], a: 0 },
                 { q: "Apa yang dimaksud dengan negara kesatuan?", o: ["Negara yang terdiri dari beberapa negara bagian", "Negara yang memiliki satu pemerintahan pusat", "Negara yang dipimpin oleh raja", "Negara yang tidak memiliki wilayah"], a: 1 },
@@ -958,17 +1107,35 @@
                 { q: "Apa yang dimaksud dengan sukuisme?", o: ["Mementingkan suku sendiri", "Cinta tanah air", "Kerja sama", "Toleransi"], a: 0 },
                 { q: "Apa yang dimaksud dengan etnosentrisme?", o: ["Menganggap budaya sendiri lebih baik", "Menghargai budaya lain", "Kerja sama", "Toleransi"], a: 0 },
                 { q: "Apa yang dimaksud dengan fanatisme?", o: ["Keyakinan diri paling benar dan merendahkan yang lain", "Toleransi", "Kerja sama", "Cinta tanah air"], a: 0 },
-                { q: "Contoh menjaga keutuhan wilayah di lingkungan sekolah adalah?", o: ["Menjaga nama baik sekolah", "Merusak fasilitas sekolah", "Membully teman", "Tidak mematuhi tata tertib"], a: 0 }
+                { q: "Contoh menjaga keutuhan wilayah di lingkungan sekolah adalah?", o: ["Menjaga nama baik sekolah", "Merusak fasilitas sekolah", "Membully teman", "Tidak mematuhi tata tertib"], a: 0 },
+                { q: "Apa yang dimaksud dengan laut teritorial?", o: ["Wilayah laut sejauh 12 mil dari garis pantai", "Wilayah laut sejauh 200 mil", "Wilayah laut bebas", "Wilayah perairan pedalaman"], a: 0 },
+                { q: "Siapa yang bertanggung jawab menjaga keutuhan NKRI?", o: ["Seluruh rakyat Indonesia", "Hanya TNI dan Polri", "Hanya presiden", "Hanya pemerintah pusat"], a: 0 },
+                { q: "Zona Ekonomi Eksklusif (ZEE) Indonesia berada pada jarak?", o: ["200 mil laut dari garis dasar", "12 mil laut dari garis pantai", "24 mil laut dari garis pantai", "3 mil laut dari garis pantai"], a: 0 },
+                { q: "Akibat yang timbul jika wilayah NKRI terpecah belah adalah?", o: ["Bangsa menjadi lemah dan mudah dijajah", "Bangsa menjadi kuat", "Ekonomi meningkat pesat", "Rakyat hidup sejahtera"], a: 0 },
+                { q: "Sikap yang mencerminkan cinta tanah air di lingkungan sekolah adalah?", o: ["Mengikuti upacara bendera dengan khidmat", "Membuang sampah sembarangan", "Membolos pelajaran", "Merusak fasilitas sekolah"], a: 0 }
             ]
         };
 
         // ============================================================
         // STATE
         // ============================================================
-        let currentUser = null; // nama siswa
-        let quizState = { bab: null, answers: [], questions: [] };
-        let allScores = {}; // { "nama": { bab1: 80, bab2: 70, ... } }
+        let currentUser = null;
+        let quizState = { bab: null, answers: [], questions: [], startTime: 0 };
+        let allScores = {};
         let rankingCache = [];
+
+        // Anti-cheat state
+        let quizActive = false;
+        let quizSubmitting = false;
+        let violationCount = 0;
+        let violationsLog = [];
+        let warningCooldown = false;
+        let fullscreenActive = false;
+        let quizTimerInterval = null;
+        let quizEndTime = 0;
+        let confirmSubmitFlag = false;
+        let alarmCtx = null;
+        let alarmInterval = null;
 
         // ============================================================
         // DOM REFS
@@ -1003,21 +1170,339 @@
             return arr;
         }
 
-        // Ubah nama siswa menjadi key yang aman untuk Firebase
-        // (Firebase tidak mengizinkan karakter . # $ / [ ] pada key)
         function studentKey(name) {
             return name.trim().replace(/[.#$/\[\]]/g, '_');
         }
 
-        // ---------- BACA SEMUA NILAI DARI SERVER ----------
+        function getBabLabel(bab) {
+            return { bab1: 'Bab 1', bab2: 'Bab 2', bab3: 'Bab 3', bab4: 'Bab 4', bab5: 'Bab 5' }[bab] || bab;
+        }
+
+        function getBabTitle(bab) {
+            return {
+                bab1: 'Sejarah Kelahiran Pancasila',
+                bab2: 'Penerapan Nilai-Nilai Pancasila',
+                bab3: 'Patuh Terhadap Norma',
+                bab4: 'Keberagaman Bangsa Indonesia dalam Bingkai Bhinneka Tunggal Ika',
+                bab5: 'Wilayah Negara Kesatuan Republik Indonesia'
+            }[bab] || bab;
+        }
+
+        function getBabSummary(bab) {
+            return {
+                bab1: 'BPUPK dibentuk 1 Maret 1945, sidang pertama 29 Mei–1 Juni 1945, Ir. Sukarno memperkenalkan Pancasila 1 Juni 1945. Panitia Sembilan merumuskan Piagam Jakarta 22 Juni 1945. Proklamasi 17 Agustus 1945, dan PPKI menetapkan Pancasila sebagai dasar negara 18 Agustus 1945.',
+                bab2: 'Pancasila terdiri dari 5 sila: Ketuhanan Yang Maha Esa, Kemanusiaan yang Adil dan Beradab, Persatuan Indonesia, Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan dalam Permusyawaratan/Perwakilan, dan Keadilan Sosial bagi Seluruh Rakyat Indonesia.',
+                bab3: 'Norma adalah aturan perilaku dalam masyarakat. Ada 4 macam norma: agama (dari Tuhan), kesusilaan (hati nurani), kesopanan (masyarakat), dan hukum (negara). Setiap norma memiliki sanksi bagi pelanggar.',
+                bab4: 'Bhinneka Tunggal Ika berarti berbeda-beda tetapi tetap satu. Indonesia memiliki keberagaman suku (>1.300 suku), 6 agama resmi, ras, dan antargolongan. Persatuan dalam keberagaman sangat penting.',
+                bab5: 'Negara memiliki 4 unsur: wilayah, rakyat, pemerintahan berdaulat, pengakuan negara lain. Indonesia adalah negara kesatuan berbentuk republik. Wilayah NKRI meliputi darat, perairan, dan udara.'
+            }[bab] || '';
+        }
+
+        function getBabMateri(bab) {
+            const map = {
+                bab1: `
+                <div class="materi-content">
+                    <h4>📌 Kelahiran Pancasila</h4>
+                    <ul>
+                        <li><strong>BPUPK</strong> dibentuk pada <strong>1 Maret 1945</strong> oleh Jepang.</li>
+                        <li>Sidang pertama BPUPK: <strong>29 Mei – 1 Juni 1945</strong>.</li>
+                        <li><strong>Ir. Sukarno</strong> memperkenalkan Pancasila pada <strong>1 Juni 1945</strong>.</li>
+                        <li><strong>Panitia Sembilan</strong> merumuskan <strong>Piagam Jakarta</strong> pada <strong>22 Juni 1945</strong>.</li>
+                    </ul>
+                    <h4>📌 Proklamasi &amp; Penetapan</h4>
+                    <ul>
+                        <li><strong>PPKI</strong> dibentuk 7 Agustus 1945.</li>
+                        <li>Proklamasi kemerdekaan dibacakan <strong>17 Agustus 1945</strong>.</li>
+                        <li>PPKI menetapkan Pancasila sebagai dasar negara <strong>18 Agustus 1945</strong>.</li>
+                        <li>Rumusan final Pancasila terdapat dalam Pembukaan UUD NRI 1945 alinea ke-4.</li>
+                    </ul>
+                    <div class="highlight">💡 <strong>Tokoh Penting:</strong> Ir. Sukarno, Drs. Mohammad Hatta, dr. Radjiman, Mr. Soepomo, Mr. Muhammad Yamin.</div>
+                </div>`,
+                bab2: `
+                <div class="materi-content">
+                    <h4>🟡 Sila 1: Ketuhanan Yang Maha Esa</h4>
+                    <p>Menghargai perbedaan agama, beribadah sesuai keyakinan, saling menghormati antarumat beragama.</p>
+                    <h4>🟠 Sila 2: Kemanusiaan yang Adil dan Beradab</h4>
+                    <p>Saling menghargai, peduli, tidak diskriminasi, menjunjung tinggi hak asasi manusia.</p>
+                    <h4>🔴 Sila 3: Persatuan Indonesia</h4>
+                    <p>Cinta tanah air, menghargai keberagaman, menjunjung persatuan di tengah perbedaan.</p>
+                    <h4>🟣 Sila 4: Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan</h4>
+                    <p>Musyawarah, demokrasi, menghargai pendapat, pemilihan ketua kelas, pemilu.</p>
+                    <h4>🟢 Sila 5: Keadilan Sosial bagi Seluruh Rakyat Indonesia</h4>
+                    <p>Keadilan, gotong royong, bakti sosial, membantu yang membutuhkan.</p>
+                    <div class="highlight">💡 Pancasila adalah pedoman hidup, sumber hukum, cita-cita bangsa, dan kepribadian bangsa.</div>
+                </div>`,
+                bab3: `
+                <div class="materi-content">
+                    <h4>🧑 Manusia sebagai Makhluk</h4>
+                    <ul>
+                        <li><strong>Makhluk Tuhan</strong> – ciptaan Tuhan yang sempurna, wajib beribadah.</li>
+                        <li><strong>Makhluk Individu</strong> – memiliki ciri khas dan kebutuhan sendiri.</li>
+                        <li><strong>Makhluk Sosial</strong> – tidak bisa hidup sendiri, butuh interaksi dan kerja sama.</li>
+                    </ul>
+                    <h4>📜 Pengertian Norma</h4>
+                    <p>Norma adalah aturan atau petunjuk perilaku dalam masyarakat agar tercipta ketertiban dan kedamaian.</p>
+                    <h4>📋 Macam-Macam Norma</h4>
+                    <ul>
+                        <li><strong>Norma Agama</strong> – bersumber dari Tuhan, sanksi dosa.</li>
+                        <li><strong>Norma Kesusilaan</strong> – bersumber dari hati nurani, sanksi rasa bersalah.</li>
+                        <li><strong>Norma Kesopanan</strong> – bersumber dari masyarakat/kebiasaan, sanksi sosial.</li>
+                        <li><strong>Norma Hukum</strong> – bersumber dari negara, sanksi tegas (denda, penjara).</li>
+                    </ul>
+                    <div class="highlight">💡 Bertindak sesuai norma di keluarga, sekolah, masyarakat, dan bangsa adalah kewajiban kita.</div>
+                </div>`,
+                bab4: `
+                <div class="materi-content">
+                    <h4>🕊️ Bhinneka Tunggal Ika</h4>
+                    <p>Berarti <strong>"berbeda-beda tetapi tetap satu"</strong>. Semboyan ini menjadi perekat persatuan Indonesia.</p>
+                    <h4>🌏 Keberagaman di Indonesia</h4>
+                    <ul>
+                        <li><strong>Suku:</strong> &gt;1.300 suku, terbesar Jawa (40,2%) dan Sunda (15,5%).</li>
+                        <li><strong>Agama:</strong> 6 agama resmi: Islam, Kristen, Katolik, Hindu, Buddha, Khonghucu.</li>
+                        <li><strong>Ras:</strong> Malayan-Mongoloid, Melanesoid, Asiatic Mongoloid, Kaukasoid.</li>
+                        <li><strong>Antargolongan:</strong> perbedaan profesi, status, pendidikan, dll.</li>
+                    </ul>
+                    <h4>📌 Faktor Keberagaman</h4>
+                    <ul>
+                        <li>Letak strategis (antara dua benua dan dua samudra).</li>
+                        <li>Negara kepulauan (ribuan pulau).</li>
+                        <li>Perbedaan kondisi alam.</li>
+                        <li>Kemajuan transportasi dan komunikasi.</li>
+                    </ul>
+                    <div class="highlight">💡 Keberagaman adalah kekayaan. Sikap toleransi dan saling menghargai sangat penting.</div>
+                </div>`,
+                bab5: `
+                <div class="materi-content">
+                    <h4>🏛️ Unsur-Unsur Negara</h4>
+                    <ul>
+                        <li><strong>Wilayah</strong> – darat, perairan, dan udara.</li>
+                        <li><strong>Rakyat</strong> – semua orang yang mendiami wilayah negara.</li>
+                        <li><strong>Pemerintahan yang berdaulat</strong> – memiliki kekuasaan tertinggi.</li>
+                        <li><strong>Pengakuan negara lain</strong> – secara de facto dan de jure.</li>
+                    </ul>
+                    <h4>📍 Wilayah NKRI</h4>
+                    <ul>
+                        <li>Luas daratan: ±2.028.087 km², luas perairan: ±6.400.000 km².</li>
+                        <li>Batas laut teritorial: 12 mil laut, ZEE: 200 mil laut.</li>
+                        <li>Pulau: 16.766 pulau (BPS 2021).</li>
+                    </ul>
+                    <h4>🛡️ Menjaga Keutuhan Wilayah</h4>
+                    <ul>
+                        <li><strong>Cinta tanah air</strong> – nasionalisme.</li>
+                        <li><strong>Toleransi</strong> – menghargai perbedaan.</li>
+                        <li><strong>Kerja sama</strong> – gotong royong.</li>
+                        <li><strong>Rela berkorban</strong> – untuk kepentingan bersama.</li>
+                    </ul>
+                    <div class="highlight">💡 Indonesia adalah negara kesatuan berbentuk republik. Menjaga keutuhan NKRI adalah tugas kita semua.</div>
+                </div>`
+            };
+            return map[bab] || '<p>Materi tidak tersedia.</p>';
+        }
+
+        // ============================================================
+        // ============  ANTI-CHEAT SYSTEM  ===========================
+        // ============================================================
+
+        /** Membunyikan alarm berulang menggunakan Web Audio API */
+        function playAlarm() {
+            try {
+                if (!alarmCtx) {
+                    const AC = window.AudioContext || window.webkitAudioContext;
+                    if (!AC) return;
+                    alarmCtx = new AC();
+                }
+                if (alarmCtx.state === 'suspended') alarmCtx.resume();
+
+                if (alarmInterval) clearInterval(alarmInterval);
+                let count = 0;
+                alarmInterval = setInterval(() => {
+                    if (count >= 8) {
+                        clearInterval(alarmInterval);
+                        alarmInterval = null;
+                        return;
+                    }
+                    const osc = alarmCtx.createOscillator();
+                    const gain = alarmCtx.createGain();
+                    osc.connect(gain);
+                    gain.connect(alarmCtx.destination);
+                    osc.type = 'square';
+                    osc.frequency.value = count % 2 === 0 ? 960 : 640;
+                    gain.gain.setValueAtTime(0.0001, alarmCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.22, alarmCtx.currentTime + 0.02);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, alarmCtx.currentTime + 0.3);
+                    osc.start(alarmCtx.currentTime);
+                    osc.stop(alarmCtx.currentTime + 0.32);
+                    count++;
+                }, 340);
+            } catch (e) {
+                console.warn('Alarm gagal dibunyikan:', e);
+            }
+        }
+
+        function stopAlarm() {
+            if (alarmInterval) {
+                clearInterval(alarmInterval);
+                alarmInterval = null;
+            }
+        }
+
+        /** Tampilkan peringatan besar di layar */
+        function showCheatWarning(jenis) {
+            $('cheatWarningText').innerHTML =
+                'Anda terdeteksi <strong>' + jenis + '</strong>.<br>' +
+                'Semua aktivitas kecurangan dicatat dan akan dilaporkan ke email guru!';
+            $('cheatCount').textContent = violationCount;
+            $('cheatMax').textContent = MAX_PELANGGARAN;
+            $('cheatWarning').classList.remove('hidden');
+        }
+
+        /** Catat satu pelanggaran */
+        function catatPelanggaran(jenis) {
+            const aktif = quizActive || ANTI_CHEAT_SELALU_AKTIF;
+            if (!aktif) return;
+            if (warningCooldown) return;
+
+            warningCooldown = true;
+            setTimeout(() => { warningCooldown = false; }, 2500);
+
+            violationCount++;
+            violationsLog.push({
+                jenis: jenis,
+                waktu: new Date().toLocaleString('id-ID'),
+                bab: quizState.bab ? getBabLabel(quizState.bab) : '-'
+            });
+
+            playAlarm();
+
+            try { if (navigator.vibrate) navigator.vibrate([350, 120, 350, 120, 350]); } catch (_) {}
+
+            showCheatWarning(jenis);
+
+            console.warn('🚨 PELANGGARAN #' + violationCount + ':', jenis);
+
+            if (violationCount >= MAX_PELANGGARAN) {
+                stopAlarm();
+                $('cheatWarningText').innerHTML =
+                    '<strong>BATAS PELANGGARAN TERLAMPAUI!</strong><br>' +
+                    'Kuis dihentikan otomatis dan jawaban Anda langsung dikirim ke guru.';
+                $('cheatWarningOk').style.display = 'none';
+                setTimeout(() => { autoSubmitKarenaCurang(); }, 2200);
+            }
+        }
+
+        async function autoSubmitKarenaCurang() {
+            $('cheatWarning').classList.add('hidden');
+            $('cheatWarningOk').style.display = '';
+            if (quizActive && !quizSubmitting) {
+                await submitQuiz(true, true);
+            }
+        }
+
+        /* ---------- EVENT DETEKSI KECURANGAN ---------- */
+
+        // 1. Berpindah tab / minimize browser
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                catatPelanggaran('berpindah tab atau membuka aplikasi lain');
+            }
+        });
+
+        // 2. Jendela kehilangan fokus (Alt+Tab, buka aplikasi lain)
+        window.addEventListener('blur', () => {
+            catatPelanggaran('keluar dari jendela kuis (membuka aplikasi lain)');
+        });
+
+        // 3. Keluar dari mode layar penuh
+        document.addEventListener('fullscreenchange', () => {
+            if (quizActive && fullscreenActive && !document.fullscreenElement) {
+                catatPelanggaran('keluar dari mode layar penuh');
+            }
+        });
+        document.addEventListener('webkitfullscreenchange', () => {
+            if (quizActive && fullscreenActive && !document.webkitFullscreenElement) {
+                catatPelanggaran('keluar dari mode layar penuh');
+            }
+        });
+
+        // 4. Blokir klik kanan
+        document.addEventListener('contextmenu', (e) => {
+            if (quizActive || ANTI_CHEAT_SELALU_AKTIF) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // 5. Blokir copy / cut / paste
+        ['copy', 'cut', 'paste'].forEach((evt) => {
+            document.addEventListener(evt, (e) => {
+                if (quizActive) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+        });
+
+        // 6. Blokir seleksi teks saat kuis
+        document.addEventListener('selectstart', (e) => {
+            if (quizActive) e.preventDefault();
+        });
+
+        // 7. Blokir tombol pintas mencurigakan (F12, Ctrl+Shift+I, Ctrl+U, PrintScreen, dll.)
+        document.addEventListener('keydown', (e) => {
+            const k = (e.key || '').toLowerCase();
+            const ctrl = e.ctrlKey || e.metaKey;
+            const blocked =
+                e.key === 'F12' ||
+                (ctrl && e.shiftKey && ['i', 'j', 'c'].includes(k)) ||
+                (ctrl && ['u', 's', 'p'].includes(k)) ||
+                k === 'printscreen' ||
+                (e.altKey && k === 'tab');
+
+            if (blocked) {
+                e.preventDefault();
+                if (quizActive) catatPelanggaran('mencoba membuka alat curang (tombol: ' + (e.key || k) + ')');
+                return false;
+            }
+            // Blokir Esc agar tidak menutup modal kuis
+            if (e.key === 'Escape' && quizActive) {
+                e.preventDefault();
+            }
+        });
+
+        // 8. Blokir drag gambar/teks
+        document.addEventListener('dragstart', (e) => {
+            if (quizActive) e.preventDefault();
+        });
+
+        /* ---------- MASUK / KELUAR LAYAR PENUH ---------- */
+        async function enterFullscreen() {
+            try {
+                const el = document.documentElement;
+                if (el.requestFullscreen) { await el.requestFullscreen(); fullscreenActive = true; }
+                else if (el.webkitRequestFullscreen) { el.webkitRequestFullscreen(); fullscreenActive = true; }
+                else fullscreenActive = false;
+            } catch (_) {
+                fullscreenActive = false;
+            }
+        }
+
+        async function exitFullscreen() {
+            try {
+                if (document.fullscreenElement && document.exitFullscreen) await document.exitFullscreen();
+                else if (document.webkitFullscreenElement && document.webkitExitFullscreen) document.webkitExitFullscreen();
+            } catch (_) {}
+            fullscreenActive = false;
+        }
+
+        // ============================================================
+        // SIMPAN / BACA NILAI (Firebase Realtime Database)
+        // ============================================================
         async function loadScores() {
-            // 1. Tampilkan dulu data dari cache lokal supaya aplikasi langsung jalan
             try {
                 const raw = localStorage.getItem('srt39_scores');
                 if (raw) allScores = JSON.parse(raw);
             } catch (_) { allScores = {}; }
 
-            // 2. Ambil data terbaru dari server
             try {
                 const res = await fetch(`${FIREBASE_DB_URL}/${SCORES_PATH}.json`, { cache: 'no-store' });
                 if (!res.ok) throw new Error('HTTP ' + res.status);
@@ -1040,18 +1525,15 @@
             return allScores;
         }
 
-        // ---------- SIMPAN NILAI SATU SISWA KE SERVER ----------
         async function setStudentScore(student, bab, score) {
-            // update tampilan lokal dulu
             if (!allScores[student]) allScores[student] = {};
             allScores[student][bab] = score;
             localStorage.setItem('srt39_scores', JSON.stringify(allScores));
 
-            // kirim ke server
             try {
                 const key = encodeURIComponent(studentKey(student));
                 const res = await fetch(`${FIREBASE_DB_URL}/${SCORES_PATH}/${key}.json`, {
-                    method: 'PATCH',   // PATCH = hanya menimpa field yang dikirim
+                    method: 'PATCH',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ name: student, [bab]: score })
                 });
@@ -1063,7 +1545,6 @@
             }
         }
 
-        // ---------- ANTREAN (kalau internet mati saat kirim) ----------
         function queuePending(student, bab, score) {
             try {
                 const q = JSON.parse(localStorage.getItem('srt39_pending') || '[]');
@@ -1091,7 +1572,6 @@
                 }
             }
             localStorage.setItem('srt39_pending', JSON.stringify(remaining));
-            if (q.length !== remaining.length) console.log(`✅ ${q.length - remaining.length} nilai tertunda berhasil dikirim`);
         }
 
         function getStudentScore(student, bab) {
@@ -1099,137 +1579,82 @@
             return allScores[student][bab] !== undefined ? allScores[student][bab] : null;
         }
 
-        function getBabLabel(bab) {
-            const map = { bab1: 'Bab 1', bab2: 'Bab 2', bab3: 'Bab 3', bab4: 'Bab 4', bab5: 'Bab 5' };
-            return map[bab] || bab;
+        function getAverageScore(student) {
+            const babKeys = ['bab1', 'bab2', 'bab3', 'bab4', 'bab5'];
+            let total = 0, count = 0;
+            babKeys.forEach((b) => {
+                const s = getStudentScore(student, b);
+                if (s !== null && s !== undefined) { total += s; count++; }
+            });
+            return count === 0 ? 0 : Math.round(total / count);
         }
 
-        function getBabTitle(bab) {
-            const map = {
-                bab1: 'Sejarah Kelahiran Pancasila',
-                bab2: 'Penerapan Nilai-Nilai Pancasila',
-                bab3: 'Patuh Terhadap Norma',
-                bab4: 'Keberagaman Bangsa Indonesia dalam Bingkai Bhinneka Tunggal Ika',
-                bab5: 'Wilayah Negara Kesatuan Republik Indonesia'
+        // ============================================================
+        // KIRIM LAPORAN KE EMAIL GURU (FormSubmit)
+        // ============================================================
+        async function kirimLaporanKeGuru(hasil) {
+            const payload = {
+                _subject: `[SRT 39 GARUT] ${hasil.nama} - ${getBabLabel(hasil.bab)} - Nilai ${hasil.score}`,
+                _template: 'table',
+                _captcha: 'false',
+                'Nama Siswa': hasil.nama,
+                'Bab': `${getBabLabel(hasil.bab)} - ${getBabTitle(hasil.bab)}`,
+                'NILAI': hasil.score,
+                'Jawaban Benar': `${hasil.correct} dari ${hasil.total}`,
+                'Jawaban Salah': `${hasil.total - hasil.correct}`,
+                'Durasi Pengerjaan': hasil.durasi,
+                'Waktu Selesai': hasil.waktu,
+                'Jumlah Pelanggaran': hasil.pelanggaran,
+                'Status': hasil.curang ? '⚠️ TERINDIKASI CURANG' : '✅ Normal',
+                'Riwayat Pelanggaran': hasil.detailPelanggaran,
+                'Rincian Jawaban': hasil.rincian
             };
-            return map[bab] || bab;
+
+            try {
+                const res = await fetch(FORMSUBMIT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                console.log('📧 Laporan berhasil dikirim ke email guru');
+                return true;
+            } catch (err) {
+                console.warn('⚠️ Gagal kirim email, dimasukkan antrean:', err);
+                queuePendingEmail(payload);
+                return false;
+            }
         }
 
-        function getBabSummary(bab) {
-            const map = {
-                bab1: 'BPUPK dibentuk 1 Maret 1945, sidang pertama 29 Mei–1 Juni 1945, Ir. Sukarno memperkenalkan Pancasila 1 Juni 1945. Panitia Sembilan merumuskan Piagam Jakarta 22 Juni 1945. Proklamasi 17 Agustus 1945, dan PPKI menetapkan Pancasila sebagai dasar negara 18 Agustus 1945.',
-                bab2: 'Pancasila terdiri dari 5 sila: Ketuhanan Yang Maha Esa, Kemanusiaan yang Adil dan Beradab, Persatuan Indonesia, Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan dalam Permusyawaratan/Perwakilan, dan Keadilan Sosial bagi Seluruh Rakyat Indonesia. Nilai-nilai ini harus diterapkan dalam kehidupan sehari-hari.',
-                bab3: 'Norma adalah aturan perilaku dalam masyarakat. Ada 4 macam norma: agama (dari Tuhan), kesusilaan (hati nurani), kesopanan (masyarakat), dan hukum (negara). Setiap norma memiliki sanksi bagi pelanggar. Penting untuk bertindak sesuai norma di semua lingkungan.',
-                bab4: 'Bhinneka Tunggal Ika berarti berbeda-beda tetapi tetap satu. Indonesia memiliki keberagaman suku (>1.300 suku), 6 agama resmi, ras, dan antargolongan. Keberagaman disebabkan oleh letak strategis, negara kepulauan, kondisi alam, dan lainnya. Persatuan dalam keberagaman sangat penting.',
-                bab5: 'Negara memiliki 4 unsur: wilayah, rakyat, pemerintahan berdaulat, pengakuan negara lain. Indonesia adalah negara kesatuan berbentuk republik. Wilayah NKRI meliputi darat, perairan (pedalaman, kepulauan, teritorial, ZEE), dan udara. Menjaga keutuhan wilayah adalah kewajiban bersama.'
-            };
-            return map[bab] || '';
+        function queuePendingEmail(payload) {
+            try {
+                const q = JSON.parse(localStorage.getItem('srt39_pending_email') || '[]');
+                q.push(payload);
+                localStorage.setItem('srt39_pending_email', JSON.stringify(q));
+            } catch (_) {}
         }
 
-        function getBabMateri(bab) {
-            const map = {
-                bab1: `
-                <div class="materi-content">
-                    <h4>📌 Kelahiran Pancasila</h4>
-                    <ul>
-                        <li><strong>BPUPK</strong> dibentuk pada <strong>1 Maret 1945</strong> oleh Jepang.</li>
-                        <li>Sidang pertama BPUPK: <strong>29 Mei – 1 Juni 1945</strong>.</li>
-                        <li><strong>Ir. Sukarno</strong> memperkenalkan Pancasila pada <strong>1 Juni 1945</strong>.</li>
-                        <li><strong>Panitia Sembilan</strong> merumuskan <strong>Piagam Jakarta</strong> pada <strong>22 Juni 1945</strong>.</li>
-                    </ul>
-                    <h4>📌 Proklamasi &amp; Penetapan</h4>
-                    <ul>
-                        <li><strong>PPKI</strong> dibentuk 7 Agustus 1945.</li>
-                        <li>Proklamasi kemerdekaan dibacakan <strong>17 Agustus 1945</strong>.</li>
-                        <li>PPKI menetapkan Pancasila sebagai dasar negara <strong>18 Agustus 1945</strong>.</li>
-                        <li>Rumusan final Pancasila terdapat dalam Pembukaan UUD NRI 1945 alinea ke-4.</li>
-                    </ul>
-                    <div class="highlight">💡 <strong>Tokoh Penting:</strong> Ir. Sukarno, Drs. Mohammad Hatta, dr. Radjiman, Mr. Soepomo, Mr. Muhammad Yamin.</div>
-                </div>
-                `,
-                bab2: `
-                <div class="materi-content">
-                    <h4>🟡 Sila 1: Ketuhanan Yang Maha Esa</h4>
-                    <p>Menghargai perbedaan agama, beribadah sesuai keyakinan, saling menghormati antarumat beragama.</p>
-                    <h4>🟠 Sila 2: Kemanusiaan yang Adil dan Beradab</h4>
-                    <p>Saling menghargai, peduli, tidak diskriminasi, menjunjung tinggi hak asasi manusia.</p>
-                    <h4>🔴 Sila 3: Persatuan Indonesia</h4>
-                    <p>Cinta tanah air, menghargai keberagaman, menjunjung persatuan di tengah perbedaan.</p>
-                    <h4>🟣 Sila 4: Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan dalam Permusyawaratan/Perwakilan</h4>
-                    <p>Musyawarah, demokrasi, menghargai pendapat, pemilihan ketua kelas, pemilu.</p>
-                    <h4>🟢 Sila 5: Keadilan Sosial bagi Seluruh Rakyat Indonesia</h4>
-                    <p>Keadilan, gotong royong, bakti sosial, membantu yang membutuhkan.</p>
-                    <div class="highlight">💡 Pancasila adalah pedoman hidup, sumber hukum, cita-cita bangsa, dan kepribadian bangsa.</div>
-                </div>
-                `,
-                bab3: `
-                <div class="materi-content">
-                    <h4>🧑 Manusia sebagai Makhluk</h4>
-                    <ul>
-                        <li><strong>Makhluk Tuhan</strong> – ciptaan Tuhan yang sempurna, wajib beribadah.</li>
-                        <li><strong>Makhluk Individu</strong> – memiliki ciri khas dan kebutuhan sendiri.</li>
-                        <li><strong>Makhluk Sosial</strong> – tidak bisa hidup sendiri, butuh interaksi dan kerja sama.</li>
-                    </ul>
-                    <h4>📜 Pengertian Norma</h4>
-                    <p>Norma adalah aturan atau petunjuk perilaku dalam masyarakat agar tercipta ketertiban dan kedamaian.</p>
-                    <h4>📋 Macam-Macam Norma</h4>
-                    <ul>
-                        <li><strong>Norma Agama</strong> – bersumber dari Tuhan, sanksi dosa.</li>
-                        <li><strong>Norma Kesusilaan</strong> – bersumber dari hati nurani, sanksi rasa bersalah.</li>
-                        <li><strong>Norma Kesopanan</strong> – bersumber dari masyarakat/kebiasaan, sanksi sosial.</li>
-                        <li><strong>Norma Hukum</strong> – bersumber dari negara, sanksi tegas (denda, penjara).</li>
-                    </ul>
-                    <div class="highlight">💡 Bertindak sesuai norma di keluarga, sekolah, masyarakat, dan bangsa adalah kewajiban kita.</div>
-                </div>
-                `,
-                bab4: `
-                <div class="materi-content">
-                    <h4>🕊️ Bhinneka Tunggal Ika</h4>
-                    <p>Berarti <strong>"berbeda-beda tetapi tetap satu"</strong>. Semboyan ini menjadi perekat persatuan Indonesia.</p>
-                    <h4>🌏 Keberagaman di Indonesia</h4>
-                    <ul>
-                        <li><strong>Suku:</strong> >1.300 suku, terbesar Jawa (40,2%) dan Sunda (15,5%).</li>
-                        <li><strong>Agama:</strong> 6 agama resmi: Islam, Kristen, Katolik, Hindu, Buddha, Khonghucu.</li>
-                        <li><strong>Ras:</strong> Malayan-Mongoloid, Melanesoid, Asiatic Mongoloid, Kaukasoid.</li>
-                        <li><strong>Antargolongan:</strong> perbedaan profesi, status, pendidikan, dll.</li>
-                    </ul>
-                    <h4>📌 Faktor Keberagaman</h4>
-                    <ul>
-                        <li>Letak strategis (antara dua benua dan dua samudra).</li>
-                        <li>Negara kepulauan (ribuan pulau).</li>
-                        <li>Perbedaan kondisi alam (pegunungan, pantai, dll).</li>
-                        <li>Kemajuan transportasi dan komunikasi.</li>
-                    </ul>
-                    <div class="highlight">💡 Keberagaman adalah kekayaan. Sikap toleransi dan saling menghargai sangat penting.</div>
-                </div>
-                `,
-                bab5: `
-                <div class="materi-content">
-                    <h4>🏛️ Unsur-Unsur Negara</h4>
-                    <ul>
-                        <li><strong>Wilayah</strong> – darat, perairan (pedalaman, kepulauan, teritorial, ZEE), dan udara.</li>
-                        <li><strong>Rakyat</strong> – semua orang yang mendiami wilayah negara.</li>
-                        <li><strong>Pemerintahan yang berdaulat</strong> – memiliki kekuasaan tertinggi.</li>
-                        <li><strong>Pengakuan negara lain</strong> – secara de facto dan de jure.</li>
-                    </ul>
-                    <h4>📍 Wilayah NKRI</h4>
-                    <ul>
-                        <li>Luas daratan: ±2.028.087 km², luas perairan: ±6.400.000 km².</li>
-                        <li>Batas laut teritorial: 12 mil laut, ZEE: 200 mil laut.</li>
-                        <li>Pulau: 16.766 pulau (BPS 2021).</li>
-                    </ul>
-                    <h4>🛡️ Menjaga Keutuhan Wilayah</h4>
-                    <ul>
-                        <li><strong>Cinta tanah air</strong> – nasionalisme.</li>
-                        <li><strong>Toleransi</strong> – menghargai perbedaan.</li>
-                        <li><strong>Kerja sama</strong> – gotong royong.</li>
-                        <li><strong>Rela berkorban</strong> – untuk kepentingan bersama.</li>
-                    </ul>
-                    <div class="highlight">💡 Indonesia adalah negara kesatuan berbentuk republik. Menjaga keutuhan NKRI adalah tugas kita semua.</div>
-                </div>
-                `
-            };
-            return map[bab] || '<p>Materi tidak tersedia.</p>';
+        async function flushPendingEmails() {
+            let q = [];
+            try { q = JSON.parse(localStorage.getItem('srt39_pending_email') || '[]'); } catch (_) {}
+            if (!q.length) return;
+            const remaining = [];
+            for (const payload of q) {
+                try {
+                    const res = await fetch(FORMSUBMIT_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (!res.ok) throw new Error('HTTP ' + res.status);
+                } catch (_) {
+                    remaining.push(payload);
+                }
+            }
+            localStorage.setItem('srt39_pending_email', JSON.stringify(remaining));
+            if (q.length !== remaining.length) {
+                console.log(`📧 ${q.length - remaining.length} laporan tertunda berhasil dikirim`);
+            }
         }
 
         // ============================================================
@@ -1238,8 +1663,7 @@
         function renderDashboard() {
             if (!currentUser) return;
             dashName.textContent = currentUser;
-            const avg = getAverageScore(currentUser);
-            dashAvgScore.textContent = `⭐ Rata-rata: ${avg}`;
+            dashAvgScore.textContent = `⭐ Rata-rata: ${getAverageScore(currentUser)}`;
 
             const babKeys = ['bab1', 'bab2', 'bab3', 'bab4', 'bab5'];
             babGrid.innerHTML = '';
@@ -1258,39 +1682,20 @@
                     ${done ? `<div style="font-weight:700;color:#1a3a5c;margin-bottom:8px;">Nilai: ${score}</div>` : ''}
                     <div class="bab-actions">
                         <button class="btn-materi" data-bab="${bab}">📖 Materi</button>
-                        <button class="btn-kuis ${done ? 'done' : ''}" data-bab="${bab}" ${done ? 'disabled' : ''}>
-                            ${done ? '✅ Kerjakan Ulang' : '📝 Kuis'}
+                        <button class="btn-kuis" data-bab="${bab}" ${(done && !IZINKAN_KERJAKAN_ULANG) ? 'disabled' : ''}>
+                            ${done ? (IZINKAN_KERJAKAN_ULANG ? '🔄 Kerjakan Ulang' : '✅ Sudah Dikerjakan') : '📝 Kuis'}
                         </button>
                     </div>
                 `;
                 babGrid.appendChild(card);
             });
 
-            // Event listeners for materi & kuis
             document.querySelectorAll('.btn-materi').forEach((btn) => {
-                btn.addEventListener('click', () => {
-                    const bab = btn.dataset.bab;
-                    showMateri(bab);
-                });
+                btn.addEventListener('click', () => showMateri(btn.dataset.bab));
             });
             document.querySelectorAll('.btn-kuis').forEach((btn) => {
-                btn.addEventListener('click', () => {
-                    const bab = btn.dataset.bab;
-                    startQuiz(bab);
-                });
+                btn.addEventListener('click', () => startQuiz(btn.dataset.bab));
             });
-        }
-
-        function getAverageScore(student) {
-            const babKeys = ['bab1', 'bab2', 'bab3', 'bab4', 'bab5'];
-            let total = 0,
-                count = 0;
-            babKeys.forEach((b) => {
-                const s = getStudentScore(student, b);
-                if (s !== null && s !== undefined) { total += s;
-                    count++; }
-            });
-            return count === 0 ? 0 : Math.round(total / count);
         }
 
         // ============================================================
@@ -1305,25 +1710,54 @@
         // ============================================================
         // KUIS
         // ============================================================
-        function startQuiz(bab) {
+        async function startQuiz(bab) {
             const pool = QUESTION_BANK[bab];
             if (!pool) return;
-            // shuffle and pick 25 (or all if less)
-            const shuffled = shuffleArray([...pool]);
-            const selected = shuffled.slice(0, 25);
 
-            // Build quiz HTML
+            // ---- Reset state anti-cheat ----
+            quizActive = true;
+            quizSubmitting = false;
+            violationCount = 0;
+            violationsLog = [];
+            confirmSubmitFlag = false;
+            warningCooldown = false;
+            document.body.classList.add('quiz-mode');
+
+            // ---- Ambil soal secara ACAK (berbeda tiap kali dibuka) ----
+            const shuffled = shuffleArray([...pool]);
+            const selected = shuffled.slice(0, Math.min(JUMLAH_SOAL, shuffled.length));
+
+            // ---- Acak juga URUTAN PILIHAN JAWABAN setiap soal ----
+            const prepared = selected.map((q) => {
+                const opts = q.o.map((text, i) => ({ text, correct: i === q.a }));
+                shuffleArray(opts);
+                return {
+                    q: q.q,
+                    o: opts.map((x) => x.text),
+                    a: opts.findIndex((x) => x.correct)
+                };
+            });
+
+            // ---- Bangun HTML kuis ----
             let html = `
                 <div class="quiz-progress">
                     <span>📝 <strong>${getBabLabel(bab)}</strong> – ${getBabTitle(bab)}</span>
-                    <span id="quizCounter">1 / ${selected.length}</span>
+                    <span class="quiz-timer" id="quizTimer">⏱ --:--</span>
+                    <span id="quizCounter">0 / ${prepared.length}</span>
                 </div>
+                <div class="quiz-guard-banner">
+                    🔒 <strong>Mode Ujian Terkunci.</strong> Dilarang berpindah tab, membuka aplikasi lain,
+                    keluar dari layar penuh, klik kanan, menyalin, atau membuka alat pengembang.
+                    Setiap pelanggaran akan <strong>dibunyikan alarm</strong>, dicatat, dan dilaporkan ke email guru.
+                    Batas maksimal: <strong>${MAX_PELANGGARAN} pelanggaran</strong>.
+                </div>
+                <div class="quiz-alert-lock" id="quizLockMsg">⚠️ Kuis sedang berlangsung. Selesaikan dan kirim jawaban terlebih dahulu.</div>
                 <div id="quizContainer">
             `;
-            selected.forEach((q, idx) => {
+            prepared.forEach((q, idx) => {
                 html += `
                     <div class="quiz-question" data-idx="${idx}">
-                        <div class="q-text">${idx+1}. ${q.q}</div>
+                        <div class="q-text">${idx + 1}. ${q.q}</div>
                         <div class="q-options">
                             ${q.o.map((opt, oi) => `
                                 <label>
@@ -1337,18 +1771,26 @@
             });
             html += `
                 </div>
+                <div id="unansweredWarn" class="quiz-alert-lock" style="display:none;"></div>
                 <button class="btn-submit-quiz" id="btnSubmitQuiz">✅ Kirim Jawaban</button>
             `;
             modalTitle.textContent = `📝 Kuis ${getBabLabel(bab)}`;
             modalBody.innerHTML = html;
             modalOverlay.classList.add('active');
 
-            // Store quiz state
+            // ---- Simpan state kuis ----
             quizState.bab = bab;
-            quizState.questions = selected;
-            quizState.answers = new Array(selected.length).fill(null);
+            quizState.questions = prepared;
+            quizState.answers = new Array(prepared.length).fill(null);
+            quizState.startTime = Date.now();
 
-            // Update counter on change
+            // ---- Timer kuis ----
+            quizEndTime = Date.now() + DURASI_KUIS_MENIT * 60 * 1000;
+            if (quizTimerInterval) clearInterval(quizTimerInterval);
+            quizTimerInterval = setInterval(updateQuizTimer, 1000);
+            updateQuizTimer();
+
+            // ---- Listener jawaban ----
             document.querySelectorAll('.quiz-question input[type="radio"]').forEach((radio) => {
                 radio.addEventListener('change', () => {
                     const idx = parseInt(radio.closest('.quiz-question').dataset.idx);
@@ -1357,23 +1799,63 @@
                 });
             });
 
-            // Submit
-            document.getElementById('btnSubmitQuiz').addEventListener('click', submitQuiz);
+            document.getElementById('btnSubmitQuiz').addEventListener('click', () => {
+                const unanswered = quizState.answers.filter((a) => a === null).length;
+                if (unanswered > 0 && !confirmSubmitFlag) {
+                    confirmSubmitFlag = true;
+                    const w = document.getElementById('unansweredWarn');
+                    w.style.display = 'block';
+                    w.textContent = `⚠️ Masih ada ${unanswered} soal belum dijawab. Klik "Kirim Jawaban" sekali lagi untuk tetap mengirim.`;
+                    return;
+                }
+                submitQuiz(false, false);
+            });
+
+            // ---- Masuk mode layar penuh ----
+            await enterFullscreen();
 
             function updateQuizCounter() {
-                const answered = quizState.answers.filter(a => a !== null).length;
+                const answered = quizState.answers.filter((a) => a !== null).length;
                 const total = quizState.questions.length;
                 document.getElementById('quizCounter').textContent = `${answered} / ${total}`;
             }
         }
 
-        // PERBAIKAN: fungsi submitQuiz dijadikan async
-        async function submitQuiz() {
+        function updateQuizTimer() {
+            const el = document.getElementById('quizTimer');
+            if (!el) return;
+            const sisa = Math.max(0, quizEndTime - Date.now());
+            const m = Math.floor(sisa / 60000);
+            const s = Math.floor((sisa % 60000) / 1000);
+            el.textContent = `⏱ ${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+            el.style.color = sisa < 60000 ? '#e74c3c' : '#1a3a5c';
+            el.style.background = sisa < 60000 ? '#fdecea' : '#eef4fa';
+
+            if (sisa <= 0) {
+                if (quizTimerInterval) { clearInterval(quizTimerInterval); quizTimerInterval = null; }
+                if (quizActive && !quizSubmitting) submitQuiz(true, false);
+            }
+        }
+
+        // ============================================================
+        // SUBMIT KUIS
+        // ============================================================
+        async function submitQuiz(waktuHabis, curang) {
+            if (!quizActive || quizSubmitting) return;
+            quizSubmitting = true;
+            quizActive = false;
+            document.body.classList.remove('quiz-mode');
+
+            if (quizTimerInterval) { clearInterval(quizTimerInterval); quizTimerInterval = null; }
+            stopAlarm();
+            await exitFullscreen();
+
             const questions = quizState.questions;
             const answers = quizState.answers;
             const total = questions.length;
             let correct = 0;
             const details = [];
+
             for (let i = 0; i < total; i++) {
                 const userAns = answers[i];
                 const correctAns = questions[i].a;
@@ -1383,37 +1865,104 @@
                     q: questions[i].q,
                     user: userAns !== null ? questions[i].o[userAns] : '(tidak dijawab)',
                     correct: questions[i].o[correctAns],
-                    isCorrect: userAns === correctAns
+                    isCorrect: isCorrect
                 });
             }
-            const score = Math.round((correct / total) * 100);
-            // Save score
+
+            const score = total > 0 ? Math.round((correct / total) * 100) : 0;
+            const durasiDetik = Math.round((Date.now() - quizState.startTime) / 1000);
+            const durasi = `${Math.floor(durasiDetik / 60)} menit ${durasiDetik % 60} detik`;
+            const waktuSelesai = new Date().toLocaleString('id-ID');
+
+            // Simpan nilai
             await setStudentScore(currentUser, quizState.bab, score);
 
-            // Show result
+            // Susun rincian untuk email
+            const rincian = details
+                .map((d, i) => `${i + 1}. ${d.q}\n   Jawaban siswa : ${d.user}\n   Kunci         : ${d.correct}\n   Hasil         : ${d.isCorrect ? 'BENAR' : 'SALAH'}`)
+                .join('\n\n');
+
+            const detailPelanggaran = violationsLog.length
+                ? violationsLog.map((v, i) => `${i + 1}) [${v.waktu}] ${v.jenis} (${v.bab})`).join('\n')
+                : 'Tidak ada pelanggaran.';
+
+            // ---- Tampilkan hasil di layar ----
+            let catatanCurang = '';
+            if (curang || violationCount >= MAX_PELANGGARAN) {
+                catatanCurang = `<div style="background:#fdecea;color:#c0392b;padding:12px;border-radius:12px;margin:12px 0;font-weight:700;">
+                    🚨 KUIS DIHENTIKAN KARENA TERINDIKASI CURANG (${violationCount} pelanggaran). Laporan telah dikirim ke guru.
+                </div>`;
+            } else if (violationCount > 0) {
+                catatanCurang = `<div style="background:#fff4e5;color:#7a4b00;padding:12px;border-radius:12px;margin:12px 0;font-weight:600;">
+                    ⚠️ Terdeteksi ${violationCount} pelanggaran selama kuis. Pelanggaran telah dicatat & dilaporkan ke guru.
+                </div>`;
+            } else {
+                catatanCurang = `<div style="background:#eafaf1;color:#1e8449;padding:12px;border-radius:12px;margin:12px 0;font-weight:600;">
+                    ✅ Tidak ada pelanggaran terdeteksi. Kerja bagus!
+                </div>`;
+            }
+
+            if (waktuHabis) {
+                catatanCurang += `<div style="background:#fdecea;color:#c0392b;padding:10px;border-radius:12px;margin-bottom:12px;font-weight:600;">
+                    ⏰ Waktu habis! Jawaban dikirim otomatis.
+                </div>`;
+            }
+
             let resultHtml = `
                 <div class="quiz-result">
-                    <div class="score-label">Nilai Kuis</div>
+                    ${catatanCurang}
+                    <div class="score-label">Nilai Kuis — ${getBabLabel(quizState.bab)}</div>
                     <div class="score-big">${score}<span> / 100</span></div>
                     <div style="margin:6px 0 12px;font-weight:600;color:#1a3a5c;">${correct} dari ${total} jawaban benar</div>
+                    <div style="font-size:0.85rem;color:#666;margin-bottom:10px;">
+                        ⏱ Durasi: ${durasi} &nbsp;|&nbsp; 🚨 Pelanggaran: ${violationCount}
+                    </div>
                     <div class="result-detail">
                         ${details.map((d, i) => `
                             <div class="r-item">
-                                <strong>${i+1}.</strong> ${d.q}<br />
+                                <strong>${i + 1}.</strong> ${d.q}<br />
                                 <span style="color:#555;">Jawaban Anda: ${d.user}</span><br />
                                 <span class="${d.isCorrect ? 'r-correct' : 'r-wrong'}">${d.isCorrect ? '✅ Benar' : '❌ Salah'} (Jawaban benar: ${d.correct})</span>
                             </div>
                         `).join('')}
                     </div>
-                    <button class="btn-submit-quiz" style="background:linear-gradient(135deg,#1a3a5c,#2b5f8a);" id="btnCloseResult">Tutup</button>
+                    <div id="emailStatusBox" class="email-status ok">📧 Mengirim laporan ke email guru…</div>
+                    <button class="btn-submit-quiz" style="background:linear-gradient(135deg,#1a3a5c,#2b5f8a);margin-top:14px;" id="btnCloseResult">Tutup</button>
                 </div>
             `;
             modalBody.innerHTML = resultHtml;
+
             document.getElementById('btnCloseResult').addEventListener('click', () => {
                 modalOverlay.classList.remove('active');
+                quizSubmitting = false;
                 renderDashboard();
             });
-            // Update ranking cache
+
+            // ---- Kirim laporan ke email guru (background) ----
+            kirimLaporanKeGuru({
+                nama: currentUser,
+                bab: quizState.bab,
+                score: score,
+                correct: correct,
+                total: total,
+                durasi: durasi,
+                waktu: waktuSelesai,
+                pelanggaran: violationCount,
+                detailPelanggaran: detailPelanggaran,
+                rincian: rincian,
+                curang: (curang || violationCount >= MAX_PELANGGARAN)
+            }).then((ok) => {
+                const box = document.getElementById('emailStatusBox');
+                if (!box) return;
+                if (ok) {
+                    box.className = 'email-status ok';
+                    box.textContent = '📧 Laporan berhasil dikirim ke email guru.';
+                } else {
+                    box.className = 'email-status fail';
+                    box.textContent = '⚠️ Laporan belum terkirim (akan dicoba ulang otomatis saat online).';
+                }
+            });
+
             buildRanking();
         }
 
@@ -1424,15 +1973,10 @@
             const babKeys = ['bab1', 'bab2', 'bab3', 'bab4', 'bab5'];
             const ranking = STUDENTS.map((name) => {
                 const scores = {};
-                let total = 0,
-                    count = 0;
+                let total = 0, count = 0;
                 babKeys.forEach((b) => {
                     const s = getStudentScore(name, b);
-                    if (s !== null && s !== undefined) {
-                        scores[b] = s;
-                        total += s;
-                        count++;
-                    }
+                    if (s !== null && s !== undefined) { scores[b] = s; total += s; count++; }
                 });
                 const avg = count === 0 ? 0 : Math.round(total / count);
                 return { name, scores, avg, count };
@@ -1442,13 +1986,12 @@
             return ranking;
         }
 
-        // Fungsi ranking diubah menjadi async agar memuat data terbaru dari server
         async function showRanking() {
             modalTitle.textContent = '🏆 Peringkat Kelas';
             modalBody.innerHTML = '<div style="padding:40px;text-align:center;color:#666;">⏳ Memuat data terbaru dari server…</div>';
             modalOverlay.classList.add('active');
 
-            await loadScores();          // ambil nilai terbaru dari server
+            await loadScores();
             const ranking = buildRanking();
 
             let html = `
@@ -1462,15 +2005,15 @@
                         </thead>
                         <tbody>
             `;
+            const babKeys = ['bab1', 'bab2', 'bab3', 'bab4', 'bab5'];
             ranking.forEach((item, idx) => {
                 const rankClass = idx === 0 ? 'rank-1' : idx === 1 ? 'rank-2' : idx === 2 ? 'rank-3' : '';
                 const medal = idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `#${idx + 1}`;
-                const babKeys = ['bab1', 'bab2', 'bab3', 'bab4', 'bab5'];
                 html += `
                     <tr class="${rankClass}">
-                        <td><span class="rank-medal ${idx===0?'gold':idx===1?'silver':idx===2?'bronze':''}">${medal}</span></td>
+                        <td><span class="rank-medal ${idx === 0 ? 'gold' : idx === 1 ? 'silver' : idx === 2 ? 'bronze' : ''}">${medal}</span></td>
                         <td><strong>${item.name}</strong></td>
-                        ${babKeys.map(b => `<td>${item.scores[b] !== undefined ? item.scores[b] : '-'}</td>`).join('')}
+                        ${babKeys.map((b) => `<td>${item.scores[b] !== undefined ? item.scores[b] : '-'}</td>`).join('')}
                         <td><strong>${item.avg}</strong></td>
                     </tr>
                 `;
@@ -1495,8 +2038,7 @@
                 return false;
             }
             const normalized = username.trim();
-            // Cek apakah ada di daftar siswa (case insensitive)
-            const found = STUDENTS.find(s => s.toLowerCase() === normalized.toLowerCase());
+            const found = STUDENTS.find((s) => s.toLowerCase() === normalized.toLowerCase());
             if (!found) {
                 loginError.textContent = '❌ Nama tidak terdaftar. Periksa kembali nama lengkap Anda.';
                 return false;
@@ -1506,7 +2048,6 @@
             loginPage.style.display = 'none';
             dashboard.classList.add('active');
             greetingText.textContent = `Halo, ${found}`;
-            // Simpan session
             try { sessionStorage.setItem('srt39_user', found); } catch (_) {}
             renderDashboard();
             return true;
@@ -1527,23 +2068,38 @@
         // ============================================================
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const uname = usernameInput.value.trim();
-            const pwd = passwordInput.value.trim();
-            doLogin(uname, pwd);
+            doLogin(usernameInput.value.trim(), passwordInput.value.trim());
         });
 
         btnLogout.addEventListener('click', doLogout);
 
+        // Tutup modal — diblokir saat kuis berlangsung
         closeModal.addEventListener('click', () => {
+            if (quizActive) {
+                const msg = document.getElementById('quizLockMsg');
+                if (msg) {
+                    msg.style.display = 'block';
+                    msg.textContent = '⚠️ Kuis sedang berlangsung. Klik "Kirim Jawaban" untuk mengakhiri.';
+                    msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                return;
+            }
             modalOverlay.classList.remove('active');
         });
+
         modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) modalOverlay.classList.remove('active');
+            if (e.target === modalOverlay) {
+                if (quizActive) {
+                    const msg = document.getElementById('quizLockMsg');
+                    if (msg) { msg.style.display = 'block'; msg.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+                    return;
+                }
+                modalOverlay.classList.remove('active');
+            }
         });
 
         btnShowRanking.addEventListener('click', showRanking);
 
-        // Enter key on login
         passwordInput.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') loginForm.dispatchEvent(new Event('submit'));
         });
@@ -1551,17 +2107,35 @@
             if (e.key === 'Enter') loginForm.dispatchEvent(new Event('submit'));
         });
 
-        // Kirim ulang nilai yang tertunda saat internet kembali online
-        window.addEventListener('online', flushPending);
+        // Tombol "Saya Mengerti" pada peringatan anti-cheat
+        $('cheatWarningOk').addEventListener('click', () => {
+            $('cheatWarning').classList.add('hidden');
+            stopAlarm();
+        });
+
+        // Kirim ulang data tertunda ketika internet kembali online
+        window.addEventListener('online', () => {
+            flushPending();
+            flushPendingEmails();
+        });
+
+        // Cegah halaman tertutup saat kuis berlangsung
+        window.addEventListener('beforeunload', (e) => {
+            if (quizActive) {
+                e.preventDefault();
+                e.returnValue = 'Kuis sedang berlangsung. Yakin ingin keluar?';
+                return e.returnValue;
+            }
+        });
 
         // ============================================================
         // INIT
         // ============================================================
         (async function init() {
             await flushPending();
+            await flushPendingEmails();
             await loadScores();
 
-            // Cek sessionStorage untuk login otomatis
             try {
                 const saved = sessionStorage.getItem('srt39_user');
                 if (saved && STUDENTS.includes(saved)) {
@@ -1573,9 +2147,10 @@
                 }
             } catch (_) {}
 
-            console.log('✅ SRT 39 Garut – Pancasila Kelas VII siap!');
-            console.log(`📚 ${STUDENTS.length} siswa terdaftar.`);
+            console.log('%c✅ SRT 39 Garut – Pancasila Kelas VII siap!', 'color:#27ae60;font-weight:bold;');
+            console.log(`📚 ${STUDENTS.length} siswa terdaftar | 150 soal (30 per bab)`);
             console.log('🔑 Login: nama lengkap, password: pancasila');
+            console.log('🔒 Anti-Cheat: AKTIF saat kuis | 📧 Laporan → ' + EMAIL_GURU);
         })();
     </script>
 </body>
